@@ -884,7 +884,7 @@ suppressWarnings(suppressMessages(
 
     ## `geom_smooth()` using formula = 'y ~ x'
 
-![](figures/Temperature_C VS Daily_energy_yield_kWh.png)<!-- -->
+![](figures/Temperature_C-VS-Daily-energy-yield-kWh.png)<!-- -->
 
 ``` r
 # Rain vs. Daily Energy Yield
