@@ -477,6 +477,84 @@ print(empty_values)
 print("Complete cases:")
 print(complete_cases)
 ```
+<span>[1] "Null values:"
+                   Location                   Timestamp      Daily_energy_yield_kWh 
+                          0                           0                           0 
+              Temperature_C           Max_Temperature_C           Min_Temperature_C 
+                          0                           0                           0 
+  Relative_Humidity_Percent                     Rain_mm                Current_AC_A 
+                          0                           0                           0 
+           Direct_Current_A                AC_Voltage_V                Voltage_DC_V 
+                          0                           0                           0 
+             Daylight_Hours     Temperature_C_Feel_Like Max_Temperature_C_Fell_Like 
+                          0                           0                           0 
+Min_Temperature_C_Feel_Like             Solar_Radiation                    UV_Index 
+                          0                           0                           0 
+                 Wind_Speed                   Wind_Gust                  Visibility 
+                          0                           0                           0 
+                Cloud_Cover                 Description                       Month 
+                          0                           0                           0 
+                     Season               Season_Autumn               Season_Spring 
+                          0                           0                           0 
+              Season_Summer               Season_Winter                    Altitude 
+                          0                           0                           0 
+                       Area                 Area_Center                  Area_North 
+                          0                           0                           0 
+                 Area_South 
+                          0 
+[1] "NA values:"
+                   Location                   Timestamp      Daily_energy_yield_kWh 
+                          0                           0                           2 
+              Temperature_C           Max_Temperature_C           Min_Temperature_C 
+                         50                          44                          45 
+  Relative_Humidity_Percent                     Rain_mm                Current_AC_A 
+                         53                          11                           2 
+           Direct_Current_A                AC_Voltage_V                Voltage_DC_V 
+                          2                           2                           2 
+             Daylight_Hours     Temperature_C_Feel_Like Max_Temperature_C_Fell_Like 
+                          0                           0                           0 
+Min_Temperature_C_Feel_Like             Solar_Radiation                    UV_Index 
+                          0                           0                           0 
+                 Wind_Speed                   Wind_Gust                  Visibility 
+                          0                           0                           0 
+                Cloud_Cover                 Description                       Month 
+                          0                           0                           0 
+                     Season               Season_Autumn               Season_Spring 
+                          0                           0                           0 
+              Season_Summer               Season_Winter                    Altitude 
+                          0                           0                           0 
+                       Area                 Area_Center                  Area_North 
+                          0                           0                           0 
+                 Area_South 
+                          0 
+[1] "Empty values:"
+                   Location                   Timestamp      Daily_energy_yield_kWh 
+                          0                          NA                          NA 
+              Temperature_C           Max_Temperature_C           Min_Temperature_C 
+                         NA                          NA                          NA 
+  Relative_Humidity_Percent                     Rain_mm                Current_AC_A 
+                         NA                          NA                          NA 
+           Direct_Current_A                AC_Voltage_V                Voltage_DC_V 
+                         NA                          NA                          NA 
+             Daylight_Hours     Temperature_C_Feel_Like Max_Temperature_C_Fell_Like 
+                          0                           0                           0 
+Min_Temperature_C_Feel_Like             Solar_Radiation                    UV_Index 
+                          0                           0                           0 
+                 Wind_Speed                   Wind_Gust                  Visibility 
+                          0                           0                           0 
+                Cloud_Cover                 Description                       Month 
+                          0                           0                           0 
+                     Season               Season_Autumn               Season_Spring 
+                          0                           0                           0 
+              Season_Summer               Season_Winter                    Altitude 
+                          0                           0                           0 
+                       Area                 Area_Center                  Area_North 
+                          0                           0                           0 
+                 Area_South 
+                          0 
+[1] "Complete cases:"
+[1] 3208
+</span>
 
 ## Handelling Missing Values Step:
 
@@ -722,7 +800,7 @@ cat("RMSE: ", rmse)
 
 ## Bootstrap
 
-```{r}
+```
 # Function to fit model and extract metrics
 fit_model <- function(split) {
   model <- lm(Daily_energy_yield_kWh ~ Temperature_C + Relative_Humidity_Percent + Rain_mm + Daylight_Hours + Solar_Radiation + UV_Index + Wind_Speed + Wind_Gust + Cloud_Cover, data = analysis(split))
