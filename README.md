@@ -60,7 +60,7 @@ Description about the Features:
 
 1. Location: The geographic location where data was collected (e.g., "Ashkelon")
 2. Timestamp: The date on which the data was recorded
-3. Daily_energy_yield_kWh: The daily energy yield in kilowatt-hours recorded on the given date (Average from that day)
+3. Daily_energy_yield_kWh: The daily energy yield in kilowatt-hours recorded on the given date (Sum from that day)
 4. Temperature_C: The average temperature in degrees Celsius recorded on the given date (Average from that day)
 5. Max_Temperature_C: The maximum temperature in degrees Celsius recorded on the given date (Max from that day)
 6. Min_Temperature_C: The minimum temperature in degrees Celsius recorded on the given date (Min from that day)
