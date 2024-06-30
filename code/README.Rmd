@@ -13,7 +13,7 @@ knitr::opts_chunk$set(echo = TRUE)
 library(knitr)
 ```
 
-# Preprocessing:
+# Preprocessing
 
 ## Load Library For Preprocessing
 
@@ -490,6 +490,16 @@ merged_df$Area <- ifelse(merged_df$Location %in% c("Naharia", "Kfar_Rupin", "Nir
 merged_df <- create_dummy_variables(merged_df, "Area")
 ```
 
+### Temperature Range
+
+Create Temperature Range Column
+
+```{r}
+# Create a new variable for temperature ranges
+merged_df$Temperature_Range <- cut(merged_df$Temperature_C, breaks = 5, labels = c("Very Low", "Low", "Medium", "High", "Very High"))
+```
+
+
 ## Missing Values Handelling
 
 Check for NA and NULL Values
@@ -598,18 +608,16 @@ print(complete_cases)
 
 ```{r}
 # Temperature vs. Daily Energy Yield
-suppressWarnings(suppressMessages(
   ggplot(df, aes(x = Temperature_C, y = Daily_energy_yield_kWh)) +
     geom_point() +
     geom_smooth(method = "lm", se = FALSE) +
     labs(title = "Correlation between Daily Energy Yield and Temperature",
          x = "Temperature (°C)",
-         y = "Daily Energy Yield (kWh)")))
+         y = "Daily Energy Yield (kWh)")
 ```
 
 ```{r}
 # Rain vs. Daily Energy Yield
-suppressWarnings(suppressMessages(
 ggplot(df, aes(x = Rain_mm, y = Daily_energy_yield_kWh)) +
   geom_point(alpha = 0.5) +
   geom_smooth(method = "lm", se = FALSE, color = "blue") +
@@ -621,7 +629,7 @@ ggplot(df, aes(x = Rain_mm, y = Daily_energy_yield_kWh)) +
   ) +
   theme_minimal() +
   xlim(0, 0.4) +
-  ylim(0, 8)))
+  ylim(0, 8)
 ```
 
 ```{r}
@@ -645,11 +653,8 @@ suppressWarnings(suppressMessages(ggplot(df, aes(x = Solar_Radiation, y = Daily_
 ```
 
 ```{r}
-# Create a new variable for temperature ranges
-df$Temperature_Range <- cut(df$Temperature_C, breaks = 5, labels = c("Very Low", "Low", "Medium", "High", "Very High"))
-
 # Histogram for Daily Energy Yield with respect to Temperature Ranges
-gg <- ggplot(df, aes(x = Temperature_Range, y = Daily_energy_yield_kWh)) +
+ggplot(df, aes(x = Temperature_Range, y = Daily_energy_yield_kWh)) +
   geom_bar(stat = "identity", fill = "blue", color = df$Temperature_Range, alpha = 0.7) +
   labs(
     x = "Temperature Range",
@@ -658,7 +663,6 @@ gg <- ggplot(df, aes(x = Temperature_Range, y = Daily_energy_yield_kWh)) +
     subtitle = "across Temperature Ranges"
   ) +
   theme_minimal()
-gg
 ```
 
 ```{r}
@@ -680,7 +684,7 @@ ggplot(filtered_df, aes(x = Description, y = Daily_energy_yield_kWh, fill = Desc
 ```
 
 ```{r}
-suppressMessages(library(corrplot))
+library(corrplot)
 # Calculate the correlation matrix
 cor_matrix <- cor(df[, c("Daily_energy_yield_kWh", "Temperature_C", "Relative_Humidity_Percent", "Solar_Radiation", "UV_Index", "Rain_mm", "Wind_Speed", "Cloud_Cover")])
 
@@ -707,7 +711,7 @@ train_data <- training(df_split)
 test_data  <- testing(df_split)
 ```
 
-### Regular Linear Regression
+### Regular Linear Regression for Weather Features
 
 ```{r}
 # Fit the linear regression
@@ -735,25 +739,25 @@ rmse <- sqrt(mean(lm_fit$residuals^2))
 cat("RMSE: ", rmse, "\n")
 ```
 
-### Fixed Model Linear Regression
+### Fixed Model Linear Regression for Weather Features
 
 ```{r}
 # Load necessary libraries
-suppressMessages(library(plm))
+library(plm)
 
 # Convert the data to a tibble
-df_tibble2 <- as_tibble(df)
+df_tibble <- as_tibble(df)
 
 # Estimate fixed effects model using plm
-fixed_model <- plm(Daily_energy_yield_kWh ~ Temperature_C + Relative_Humidity_Percent + Rain_mm + Solar_Radiation + UV_Index + Wind_Speed + Wind_Gust + Cloud_Cover + factor(Location),
-                   data = df_tibble2,
+fixed_model_weather <- plm(Daily_energy_yield_kWh ~ Temperature_C + Relative_Humidity_Percent + Rain_mm + Solar_Radiation + UV_Index + Wind_Speed + Wind_Gust + Cloud_Cover + factor(Location),
+                   data = df_tibble,
                    model = "within")
 
 # Summary of the model
-summary(fixed_model)
+summary(fixed_model_weather)
 
 # Extract residuals
-residuals <- residuals(fixed_model)
+residuals <- residuals(fixed_model_weather)
 
 # Calculate RMSE
 rmse <- sqrt(mean(residuals^2))
@@ -761,6 +765,75 @@ rmse <- sqrt(mean(residuals^2))
 # Print RMSE
 cat("RMSE: ", rmse)
 ```
+
+### Fixed Model Linear Regression for Location Features
+
+```{r}
+# Load necessary libraries
+library(plm)
+
+
+# Convert the data to a tibble
+df_tibble <- as_tibble(df)
+
+# Estimate fixed effects model using plm
+fixed_model_area <- plm(Daily_energy_yield_kWh ~ Altitude + AreaSouth + AreaCenter + AreaNorth + Daylight_Hours + factor(Location),
+                   data = df_tibble,
+                   model = "within")
+
+# Summary of the model
+summary(fixed_model_area)
+
+# Extract residuals
+residuals <- residuals(fixed_model_area)
+
+# Calculate RMSE
+rmse <- sqrt(mean(residuals^2))
+
+# Print RMSE
+cat("RMSE: ", rmse)
+
+```
+
+
+### Combined Linear Regression for Weather Features & Location Features
+
+```{r}
+library(caret) # For RMSE calculation
+
+# Assuming you have a dataset df with predictors and response variable 'y'
+# Fit the two models
+model1 <- lm(Daily_energy_yield_kWh ~ Temperature_C + Relative_Humidity_Percent + Rain_mm + Daylight_Hours + Solar_Radiation + UV_Index + Wind_Speed + Wind_Gust + Cloud_Cover, data = df)
+model2 <- lm(Daily_energy_yield_kWh ~ Location + Area + Altitude, data = df)
+
+# Make predictions using both models
+pred1 <- predict(model1, df)
+pred2 <- predict(model2, df)
+
+# Combine predictions using weights (w1 and w2)
+w1 <- 0.7
+w2 <- 0.3
+combined_pred <- w1 * pred1 + w2 * pred2
+
+# Calculate R²
+ss_total <- sum((df$Daily_energy_yield_kWh - mean(df$Daily_energy_yield_kWh))^2)
+ss_res <- sum((df$Daily_energy_yield_kWh - combined_pred)^2)
+r_squared <- 1 - (ss_res / ss_total)
+
+# Calculate adjusted R²
+n <- nrow(df)
+p <- ncol(df) - 1
+adj_r_squared <- 1 - ((1 - r_squared) * (n - 1) / (n - p - 1))
+
+# Calculate RMSE
+rmse <- RMSE(combined_pred, df$Daily_energy_yield_kWh)
+
+# Print the results
+cat("R²:", r_squared, "\n")
+cat("Adjusted R²:", adj_r_squared, "\n")
+cat("RMSE:", rmse, "\n")
+```
+
 
 ## Bootstrap
 
