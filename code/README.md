@@ -884,7 +884,7 @@ suppressWarnings(suppressMessages(
 
     ## `geom_smooth()` using formula = 'y ~ x'
 
-![](Final-Project_files/figure-gfm/unnamed-chunk-19-1.png)<!-- -->
+![](figures/Temperature_C VS Daily_energy_yield_kWh.png)<!-- -->
 
 ``` r
 # Rain vs. Daily Energy Yield
