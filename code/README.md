@@ -914,7 +914,7 @@ ggplot(df, aes(x = Rain_mm, y = Daily_energy_yield_kWh)) +
     ## Warning: Removed 26 rows containing missing values or values outside the scale range
     ## (`geom_smooth()`).
 
-![](Final-Project_files/figure-gfm/unnamed-chunk-20-1.png)<!-- -->
+![](figures/Rain_mm-VS-Daily_energy_yield_kWh.png)<!-- -->
 
 ``` r
 # Cloud Cover vs. Daily Energy Yield
@@ -928,7 +928,7 @@ suppressWarnings(suppressMessages(ggplot(df, aes(x = Cloud_Cover, y = Daily_ener
 
     ## `geom_smooth()` using formula = 'y ~ x'
 
-![](Final-Project_files/figure-gfm/unnamed-chunk-21-1.png)<!-- -->
+![](figures/Cloud-VS-Daily_energy_yield_kWh.png)<!-- -->
 
 ``` r
 # Solar Radiation vs. Daily Energy Yield
@@ -942,7 +942,7 @@ suppressWarnings(suppressMessages(ggplot(df, aes(x = Solar_Radiation, y = Daily_
 
     ## `geom_smooth()` using formula = 'y ~ x'
 
-![](Final-Project_files/figure-gfm/unnamed-chunk-22-1.png)<!-- -->
+![](figures/Radiation-VS-Daily_energy_yield_kWh.png)<!-- -->
 
 ``` r
 # Create a new variable for temperature ranges
@@ -961,7 +961,7 @@ gg <- ggplot(df, aes(x = Temperature_Range, y = Daily_energy_yield_kWh)) +
 gg
 ```
 
-![](Final-Project_files/figure-gfm/unnamed-chunk-23-1.png)<!-- -->
+![](figures/Histogram-of-Daily-Energy-Yield.png)<!-- -->
 
 ``` r
 # Filter the dataset for specific weather descriptions
@@ -991,7 +991,7 @@ corrplot(cor_matrix, method = "color", type = "full", addrect = 4,
          tl.col = "black")
 ```
 
-![](Final-Project_files/figure-gfm/unnamed-chunk-25-1.png)<!-- -->
+![](figures/Correlation-Matrix.png)<!-- -->
 
 ## Linear Regression
 
@@ -1173,7 +1173,7 @@ ggplot(boot_coefs, aes(x = estimate)) +
   labs(title = "Bootstrap distributions of regression coefficients")
 ```
 
-![](Final-Project_files/figure-gfm/unnamed-chunk-29-1.png)<!-- -->
+![](figures/Bootstrap-distributions-of-regression-coefficients.png)<!-- -->
 
 ``` r
 # Plot distribution of metrics
@@ -1183,7 +1183,7 @@ ggplot(boot_metrics, aes(x = estimate)) +
   labs(title = "Bootstrap distributions of model metrics")
 ```
 
-![](Final-Project_files/figure-gfm/unnamed-chunk-29-2.png)<!-- -->
+![](figures/Bootstrap-distributions-of-model-metrics.png)<!-- -->
 
 ``` r
 # Calculate confidence intervals for coefficients
