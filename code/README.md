@@ -4,12 +4,13 @@ Team 2
 
 - [Preprocessing:](#preprocessing)
   - [Load Library For Preprocessing](#load-library-for-preprocessing)
+  - [Read Data](#read-data)
   - [Read Altitudes Data](#read-altitudes-data)
-  - [Read Electric Data](#read-electric-data)
-  - [Read Weather Data from Meteorological
-    Service](#read-weather-data-from-meteorological-service)
-  - [Read Weather Data from Visual
-    Crossing](#read-weather-data-from-visual-crossing)
+    - [Read Electric Data](#read-electric-data)
+    - [Read Weather Data from Meteorological
+      Service](#read-weather-data-from-meteorological-service)
+    - [Read Weather Data from Visual
+      Crossing](#read-weather-data-from-visual-crossing)
   - [Preprocess Electric Data and Merge to one
     DF](#preprocess-electric-data-and-merge-to-one-df)
     - [Preprocess Electric Data](#preprocess-electric-data)
@@ -31,9 +32,10 @@ Team 2
       with Visual
       Crossing](#join-weather-data-from-meteorological-service-and-electric-data-with-visual-crossing)
   - [Feature Engineering](#feature-engineering)
-  - [Check for NA and NULL Values](#check-for-na-and-null-values)
-  - [Handelling Missing Values Step:](#handelling-missing-values-step)
-  - [Check for NA and NULL Values](#check-for-na-and-null-values-1)
+    - [Season Column](#season-column)
+    - [Altitude Column](#altitude-column)
+    - [Area Column](#area-column)
+  - [Missing Values Handelling](#missing-values-handelling)
 - [Data Analysis](#data-analysis)
   - [Visualization](#visualization)
   - [Linear Regression](#linear-regression)
@@ -64,6 +66,8 @@ library(tidyverse)
 library(readxl)
 ```
 
+## Read Data
+
 ## Read Altitudes Data
 
 ``` r
@@ -71,7 +75,9 @@ library(readxl)
 Altitudes <- read_excel("../data/Altitudes.xlsx")
 ```
 
-## Read Electric Data
+### Read Electric Data
+
+**Note: This is Private data**
 
 ``` r
 # Read the Data of Solar Panels
@@ -88,7 +94,7 @@ suppressMessages({
 })
 ```
 
-## Read Weather Data from Meteorological Service
+### Read Weather Data from Meteorological Service
 
 ``` r
 # Read Weather Data from Meteorological Service
@@ -103,7 +109,7 @@ Nir_David_Weather <- suppressWarnings(read_excel("../data/Nir_David_Weather.xlsx
 Revivim_Weather <- suppressWarnings(read_excel("../data/Revivim_Weather.xlsx"))
 ```
 
-## Read Weather Data from Visual Crossing
+### Read Weather Data from Visual Crossing
 
 ``` r
 # Read Weather Data from Visual Crossing
@@ -462,6 +468,10 @@ merged_df <- merged_df %>% select(Location,
 
 ## Feature Engineering
 
+### Season Column
+
+Create Season Column and add Dummy variables
+
 ``` r
 # Create Season column by the number of the month - From Wikipedia
 merged_df <- merged_df %>%
@@ -497,10 +507,22 @@ create_dummy_variables <- function(df, column_name) {
 
 # Example usage for the "Season" column
 merged_df <- create_dummy_variables(merged_df, "Season")
+```
 
+### Altitude Column
+
+Create Altitudes Column
+
+``` r
 # Merge altitude data with merged_df based on Location
 merged_df <- merge(merged_df, Altitudes, by = "Location", all.x = TRUE)
+```
 
+### Area Column
+
+Create Area Column and add Dummy variables
+
+``` r
 # Create Area column based on Location - From Google Maps
 merged_df$Area <- ifelse(merged_df$Location %in% c("Naharia", "Kfar_Rupin", "Nir_David"), "North",
                          ifelse(merged_df$Location %in% c("Emek_Hefer", "Jerusalem"), "Center",
@@ -511,7 +533,9 @@ merged_df$Area <- ifelse(merged_df$Location %in% c("Naharia", "Kfar_Rupin", "Nir
 merged_df <- create_dummy_variables(merged_df, "Area")
 ```
 
-## Check for NA and NULL Values
+## Missing Values Handelling
+
+Check for NA and NULL Values
 
 ``` r
 # Check for NULL values
@@ -654,7 +678,7 @@ print(complete_cases)
 
     ## [1] 3208
 
-## Handelling Missing Values Step:
+Handelling Missing Values Step:
 
 ``` r
 # Handelling Missing Values Step:
@@ -700,7 +724,7 @@ df <- merged_df %>%
   ungroup()
 ```
 
-## Check for NA and NULL Values
+Check for NA and NULL Values
 
 ``` r
 # Check for NULL values
@@ -860,7 +884,7 @@ suppressWarnings(suppressMessages(
 
     ## `geom_smooth()` using formula = 'y ~ x'
 
-![](Final-Project_files/figure-gfm/unnamed-chunk-17-1.png)<!-- -->
+![](Final-Project_files/figure-gfm/unnamed-chunk-19-1.png)<!-- -->
 
 ``` r
 # Rain vs. Daily Energy Yield
@@ -890,7 +914,7 @@ ggplot(df, aes(x = Rain_mm, y = Daily_energy_yield_kWh)) +
     ## Warning: Removed 26 rows containing missing values or values outside the scale range
     ## (`geom_smooth()`).
 
-![](Final-Project_files/figure-gfm/unnamed-chunk-18-1.png)<!-- -->
+![](Final-Project_files/figure-gfm/unnamed-chunk-20-1.png)<!-- -->
 
 ``` r
 # Cloud Cover vs. Daily Energy Yield
@@ -904,7 +928,7 @@ suppressWarnings(suppressMessages(ggplot(df, aes(x = Cloud_Cover, y = Daily_ener
 
     ## `geom_smooth()` using formula = 'y ~ x'
 
-![](Final-Project_files/figure-gfm/unnamed-chunk-19-1.png)<!-- -->
+![](Final-Project_files/figure-gfm/unnamed-chunk-21-1.png)<!-- -->
 
 ``` r
 # Solar Radiation vs. Daily Energy Yield
@@ -918,7 +942,7 @@ suppressWarnings(suppressMessages(ggplot(df, aes(x = Solar_Radiation, y = Daily_
 
     ## `geom_smooth()` using formula = 'y ~ x'
 
-![](Final-Project_files/figure-gfm/unnamed-chunk-20-1.png)<!-- -->
+![](Final-Project_files/figure-gfm/unnamed-chunk-22-1.png)<!-- -->
 
 ``` r
 # Create a new variable for temperature ranges
@@ -937,7 +961,7 @@ gg <- ggplot(df, aes(x = Temperature_Range, y = Daily_energy_yield_kWh)) +
 gg
 ```
 
-![](Final-Project_files/figure-gfm/unnamed-chunk-21-1.png)<!-- -->
+![](Final-Project_files/figure-gfm/unnamed-chunk-23-1.png)<!-- -->
 
 ``` r
 # Filter the dataset for specific weather descriptions
@@ -956,7 +980,7 @@ ggplot(filtered_df, aes(x = Description, y = Daily_energy_yield_kWh, fill = Desc
         axis.ticks.x=element_blank())
 ```
 
-![](Final-Project_files/figure-gfm/unnamed-chunk-22-1.png)<!-- -->
+![](Final-Project_files/figure-gfm/unnamed-chunk-24-1.png)<!-- -->
 
 ``` r
 suppressMessages(library(corrplot))
@@ -967,7 +991,7 @@ corrplot(cor_matrix, method = "color", type = "full", addrect = 4,
          tl.col = "black")
 ```
 
-![](Final-Project_files/figure-gfm/unnamed-chunk-23-1.png)<!-- -->
+![](Final-Project_files/figure-gfm/unnamed-chunk-25-1.png)<!-- -->
 
 ## Linear Regression
 
@@ -1149,7 +1173,7 @@ ggplot(boot_coefs, aes(x = estimate)) +
   labs(title = "Bootstrap distributions of regression coefficients")
 ```
 
-![](Final-Project_files/figure-gfm/unnamed-chunk-27-1.png)<!-- -->
+![](Final-Project_files/figure-gfm/unnamed-chunk-29-1.png)<!-- -->
 
 ``` r
 # Plot distribution of metrics
@@ -1159,7 +1183,7 @@ ggplot(boot_metrics, aes(x = estimate)) +
   labs(title = "Bootstrap distributions of model metrics")
 ```
 
-![](Final-Project_files/figure-gfm/unnamed-chunk-27-2.png)<!-- -->
+![](Final-Project_files/figure-gfm/unnamed-chunk-29-2.png)<!-- -->
 
 ``` r
 # Calculate confidence intervals for coefficients

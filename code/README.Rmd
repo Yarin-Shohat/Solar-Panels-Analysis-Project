@@ -22,15 +22,18 @@ library(tidyverse)
 library(readxl)
 ```
 
+## Read Data
 
-## Read Altitudes Data
+### Read Altitudes Data
 
 ```{r}
 # Read the Data for Altitudes for the Locations
 Altitudes <- read_excel("../data/Altitudes.xlsx")
 ```
 
-## Read Electric Data
+### Read Electric Data
+
+**Note: This is Private data**
 
 ```{r}
 # Read the Data of Solar Panels
@@ -47,7 +50,7 @@ suppressMessages({
 })
 ```
 
-## Read Weather Data from Meteorological Service
+### Read Weather Data from Meteorological Service
 
 ```{r}
 # Read Weather Data from Meteorological Service
@@ -62,7 +65,7 @@ Nir_David_Weather <- suppressWarnings(read_excel("../data/Nir_David_Weather.xlsx
 Revivim_Weather <- suppressWarnings(read_excel("../data/Revivim_Weather.xlsx"))
 ```
 
-## Read Weather Data from Visual Crossing
+### Read Weather Data from Visual Crossing
 
 ```{r}
 # Read Weather Data from Visual Crossing
@@ -422,6 +425,10 @@ merged_df <- merged_df %>% select(Location,
 
 ## Feature Engineering 
 
+### Season Column
+
+Create Season Column and add Dummy variables
+
 ```{r}
 # Create Season column by the number of the month - From Wikipedia
 merged_df <- merged_df %>%
@@ -457,10 +464,22 @@ create_dummy_variables <- function(df, column_name) {
 
 # Example usage for the "Season" column
 merged_df <- create_dummy_variables(merged_df, "Season")
+```
 
+### Altitude Column
+
+Create Altitudes Column
+
+```{r}
 # Merge altitude data with merged_df based on Location
 merged_df <- merge(merged_df, Altitudes, by = "Location", all.x = TRUE)
+```
 
+### Area Column
+
+Create Area Column and add Dummy variables
+
+```{r}
 # Create Area column based on Location - From Google Maps
 merged_df$Area <- ifelse(merged_df$Location %in% c("Naharia", "Kfar_Rupin", "Nir_David"), "North",
                          ifelse(merged_df$Location %in% c("Emek_Hefer", "Jerusalem"), "Center",
@@ -471,7 +490,9 @@ merged_df$Area <- ifelse(merged_df$Location %in% c("Naharia", "Kfar_Rupin", "Nir
 merged_df <- create_dummy_variables(merged_df, "Area")
 ```
 
-## Check for NA and NULL Values
+## Missing Values Handelling
+
+Check for NA and NULL Values
 
 ```{r}
 # Check for NULL values
@@ -498,7 +519,7 @@ print(empty_values)
 print(complete_cases)
 ```
 
-## Handelling Missing Values Step:
+Handelling Missing Values Step:
 
 ```{r}
 # Handelling Missing Values Step:
@@ -544,7 +565,7 @@ df <- merged_df %>%
   ungroup()
 ```
 
-## Check for NA and NULL Values
+Check for NA and NULL Values
 
 ```{r}
 # Check for NULL values
