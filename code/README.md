@@ -68,7 +68,7 @@ library(readxl)
 
 ## Read Data
 
-## Read Altitudes Data
+### Read Altitudes Data
 
 ``` r
 # Read the Data for Altitudes for the Locations
