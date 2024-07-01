@@ -56,20 +56,6 @@ Team 2
 
 ``` r
 library(tidyverse)
-```
-
-    ## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-    ## ✔ dplyr     1.1.4     ✔ readr     2.1.5
-    ## ✔ forcats   1.0.0     ✔ stringr   1.5.1
-    ## ✔ ggplot2   3.5.1     ✔ tibble    3.2.1
-    ## ✔ lubridate 1.9.3     ✔ tidyr     1.3.1
-    ## ✔ purrr     1.0.2     
-    ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-    ## ✖ dplyr::filter() masks stats::filter()
-    ## ✖ dplyr::lag()    masks stats::lag()
-    ## ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
-
-``` r
 library(readxl)
 ```
 
@@ -909,8 +895,6 @@ print(complete_cases)
          y = "Daily Energy Yield (kWh)")
 ```
 
-    ## `geom_smooth()` using formula = 'y ~ x'
-
 ![](figures/Temperature_C-VS-Daily_energy_yield_kWh.png)<!-- -->
 
 ``` r
@@ -929,17 +913,6 @@ ggplot(df, aes(x = Rain_mm, y = Daily_energy_yield_kWh)) +
   ylim(0, 8)
 ```
 
-    ## `geom_smooth()` using formula = 'y ~ x'
-
-    ## Warning: Removed 2 rows containing non-finite outside the scale range
-    ## (`stat_smooth()`).
-
-    ## Warning: Removed 2 rows containing missing values or values outside the scale range
-    ## (`geom_point()`).
-
-    ## Warning: Removed 26 rows containing missing values or values outside the scale range
-    ## (`geom_smooth()`).
-
 ![](figures/Rain_mm-VS-Daily_energy_yield_kWh.png)<!-- -->
 
 ``` r
@@ -952,8 +925,6 @@ suppressWarnings(suppressMessages(ggplot(df, aes(x = Cloud_Cover, y = Daily_ener
        y = "Daily Energy Yield (kWh)")))
 ```
 
-    ## `geom_smooth()` using formula = 'y ~ x'
-
 ![](figures/Cloud-VS-Daily_energy_yield_kWh.png)<!-- -->
 
 ``` r
@@ -965,8 +936,6 @@ suppressWarnings(suppressMessages(ggplot(df, aes(x = Solar_Radiation, y = Daily_
        x = "Solar Radiation",
        y = "Daily Energy Yield (kWh)")))
 ```
-
-    ## `geom_smooth()` using formula = 'y ~ x'
 
 ![](figures/Radiation-VS-Daily_energy_yield_kWh.png)<!-- -->
 
@@ -1006,11 +975,7 @@ ggplot(filtered_df, aes(x = Description, y = Daily_energy_yield_kWh, fill = Desc
 
 ``` r
 library(corrplot)
-```
 
-    ## corrplot 0.92 loaded
-
-``` r
 # Calculate the correlation matrix
 cor_matrix <- cor(df[, c("Daily_energy_yield_kWh", "Temperature_C", "Relative_Humidity_Percent", "Solar_Radiation", "UV_Index", "Rain_mm", "Wind_Speed", "Cloud_Cover")])
 
