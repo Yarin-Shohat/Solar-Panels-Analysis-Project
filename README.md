@@ -63,15 +63,15 @@ The data we collected is from January 1, 2023, until December 31, 2023:
 
 1. <ins>**Weather Data from the Solar Panels Company**</ins> (Private Data)
 2. <ins>**Data from Israel Meteorological Service:**</ins>  
-    From [link](https://ims.gov.il/he/data_gov) - about meteorological climate data 
-3. <ins>**Altitudes Data:**</ins>  
-    From [link](https://he.wikipedia.org/)
-4. <ins>**Area location divide:**</ins>   
-    From [link](https://www.google.com/maps)
-5. <ins>**Seasons Data:**</ins>   
-    We collected data about the seasons in Israel from [link](https://he.wikipedia.org/wiki/%D7%A2%D7%95%D7%A0%D7%95%D7%AA_%D7%94%D7%A9%D7%A0%D7%94)
-6. <ins>**Weather Data from Visual Crossing:**</ins>   
+    We collected data about the Weather From [link](https://ims.gov.il/he/data_gov)
+3. <ins>**Weather Data from Visual Crossing:**</ins>   
     We collected more data about the Weather from [link](https://www.visualcrossing.com/weather/weather-data-services)
+4. <ins>**Altitudes Data:**</ins>  
+    We collected data about the Altitudes of the Locations From [link](https://he.wikipedia.org/)
+5. <ins>**Area location divide:**</ins>   
+    We collected data about the General Area in Israel of the Locations From [link](https://www.google.com/maps)
+6. <ins>**Seasons Data:**</ins>   
+    We collected data about the seasons in Israel from [link](https://he.wikipedia.org/wiki/%D7%A2%D7%95%D7%A0%D7%95%D7%AA_%D7%94%D7%A9%D7%A0%D7%94)
 
 Description about the Features:
 
