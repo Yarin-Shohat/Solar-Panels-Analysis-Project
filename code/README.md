@@ -911,7 +911,7 @@ print(complete_cases)
 
     ## `geom_smooth()` using formula = 'y ~ x'
 
-![](Final_Project_files/figure-gfm/unnamed-chunk-20-1.png)<!-- -->
+![](figures/Temperature_C-VS-Daily_energy_yield_kWh.png)<!-- -->
 
 ``` r
 # Rain vs. Daily Energy Yield
@@ -940,7 +940,7 @@ ggplot(df, aes(x = Rain_mm, y = Daily_energy_yield_kWh)) +
     ## Warning: Removed 26 rows containing missing values or values outside the scale range
     ## (`geom_smooth()`).
 
-![](Final_Project_files/figure-gfm/unnamed-chunk-21-1.png)<!-- -->
+![](figures/Rain_mm-VS-Daily_energy_yield_kWh.png)<!-- -->
 
 ``` r
 # Cloud Cover vs. Daily Energy Yield
@@ -954,7 +954,7 @@ suppressWarnings(suppressMessages(ggplot(df, aes(x = Cloud_Cover, y = Daily_ener
 
     ## `geom_smooth()` using formula = 'y ~ x'
 
-![](Final_Project_files/figure-gfm/unnamed-chunk-22-1.png)<!-- -->
+![](figures/Cloud-VS-Daily_energy_yield_kWh.png)<!-- -->
 
 ``` r
 # Solar Radiation vs. Daily Energy Yield
@@ -968,7 +968,7 @@ suppressWarnings(suppressMessages(ggplot(df, aes(x = Solar_Radiation, y = Daily_
 
     ## `geom_smooth()` using formula = 'y ~ x'
 
-![](Final_Project_files/figure-gfm/unnamed-chunk-23-1.png)<!-- -->
+![](figures/Radiation-VS-Daily_energy_yield_kWh.png)<!-- -->
 
 ``` r
 # Histogram for Daily Energy Yield with respect to Temperature Ranges
@@ -983,7 +983,7 @@ ggplot(df, aes(x = Temperature_Range, y = Daily_energy_yield_kWh)) +
   theme_minimal()
 ```
 
-![](Final_Project_files/figure-gfm/unnamed-chunk-24-1.png)<!-- -->
+![](figures/Histogram-of-Daily-Energy-Yield.png)<!-- -->
 
 ``` r
 # Filter the dataset for specific weather descriptions
@@ -1002,7 +1002,7 @@ ggplot(filtered_df, aes(x = Description, y = Daily_energy_yield_kWh, fill = Desc
         axis.ticks.x=element_blank())
 ```
 
-![](Final_Project_files/figure-gfm/unnamed-chunk-25-1.png)<!-- -->
+![](Final-Project_files/figure-gfm/unnamed-chunk-24-1.png)<!-- -->
 
 ``` r
 library(corrplot)
@@ -1018,7 +1018,7 @@ corrplot(cor_matrix, method = "color", type = "full", addrect = 4,
          tl.col = "black")
 ```
 
-![](Final_Project_files/figure-gfm/unnamed-chunk-26-1.png)<!-- -->
+![](figures/Correlation-Matrix.png)<!-- -->
 
 ## Linear Regression
 
@@ -1333,7 +1333,7 @@ ggplot(boot_coefs, aes(x = estimate)) +
   labs(title = "Bootstrap distributions of regression coefficients")
 ```
 
-![](Final_Project_files/figure-gfm/unnamed-chunk-32-1.png)<!-- -->
+![](figures/Bootstrap-distributions-of-regression-coefficients.png)<!-- -->
 
 ``` r
 # Plot distribution of metrics
@@ -1343,7 +1343,7 @@ ggplot(boot_metrics, aes(x = estimate)) +
   labs(title = "Bootstrap distributions of model metrics")
 ```
 
-![](Final_Project_files/figure-gfm/unnamed-chunk-32-2.png)<!-- -->
+![](figures/Bootstrap-distributions-of-model-metrics.png)<!-- -->
 
 ``` r
 # Calculate confidence intervals for coefficients
