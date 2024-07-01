@@ -971,7 +971,7 @@ ggplot(filtered_df, aes(x = Description, y = Daily_energy_yield_kWh, fill = Desc
         axis.ticks.x=element_blank())
 ```
 
-![](Final-Project_files/figure-gfm/unnamed-chunk-24-1.png)<!-- -->
+![](figures/Energy-Yield-Distribution-by-Weather-Description.png)<!-- -->
 
 ``` r
 library(corrplot)
