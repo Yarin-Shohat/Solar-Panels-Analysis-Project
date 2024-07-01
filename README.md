@@ -65,7 +65,7 @@ The data we collected is from January 1, 2023, until December 31, 2023:
 2. <ins>**Data from Israel Meteorological Service:**</ins>  
     From [link](https://ims.gov.il/he/data_gov) - about meteorological climate data 
 3. <ins>**Altitudes Data:**</ins>  
-    From [link](httpsWeather://he.wikipedia.org/)
+    From [link](https://he.wikipedia.org/)
 4. <ins>**Area location divide:**</ins>   
     From [link](https://www.google.com/maps)
 5. <ins>**Seasons Data:**</ins>   
