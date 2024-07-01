@@ -24,7 +24,7 @@ To compile and run the project, follow these steps:
     cd Solar-Panels-Analysis-Project
     ```
 3. **Add Data:**  
-    Add the `data/` folder into to the folder `Solar-Panels-Analysis-Project/`
+    Download the Data and Add the `data/` folder into to the folder `Solar-Panels-Analysis-Project/` so that all the data will be in  `Solar-Panels-Analysis-Project/data/`
 4. **Run R Script:**  
     Run the R Script in `Solar-Panels-Analysis-Project/code/README.Rmd`
 
