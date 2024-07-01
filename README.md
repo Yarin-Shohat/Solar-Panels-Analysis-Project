@@ -1,7 +1,5 @@
 # SISE2601 Project Team 2 - Solar Panels Project
 
-## Solar Panels Project in SISE2601 - Team 2
-
 ### Project Overview
 
 This repository contains the analysis and findings for our team project in SISE2601 - Data Analysis with R. We investigate the question:
