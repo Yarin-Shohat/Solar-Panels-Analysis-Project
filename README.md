@@ -13,7 +13,7 @@ This repository contains the analysis and findings for our team project in SISE2
 - `code/`: R script for data processing and analysis
 - `code/figures/`: Output graphs and charts
 
-## Getting Started
+### Getting Started
 
 To compile and run the project, follow these steps:
 
