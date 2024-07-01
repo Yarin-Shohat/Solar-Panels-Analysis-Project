@@ -13,6 +13,23 @@ This repository contains the analysis and findings for our team project in SISE2
 - `code/`: R script for data processing and analysis
 - `code/figures/`: Output graphs and charts
 
+## Getting Started
+
+To compile and run the project, follow these steps:
+
+1. **Clone the repository:**
+    ```
+    git clone https://github.com/Yarin-Shohat/Solar-Panels-Analysis-Project.git
+    ```
+2. **Navigate to the project directory:**
+    ```
+    cd Solar-Panels-Analysis-Project
+    ```
+3. **Add Data:**  
+    Add the `data/` folder into to the folder `Solar-Panels-Analysis-Project/`
+4. **Run R Script:**  
+    Run the R Script in `Solar-Panels-Analysis-Project/code/README.Rmd`
+
 ### Key Features
 
 - Analysis of solar panel efficiency across various locations
