@@ -816,7 +816,7 @@ ggplot(df, aes(x = Temperature_Range, y = Daily_energy_yield_kWh)) +
   theme_minimal()
 ```
 
-![](README_files/figure-gfm/Histogram%20of%20Daily%20Energy%20Yield-1.png)<!-- -->
+![](README_files/figure-gfm/Histogram%20of%20Energy%20Yield-1.png)<!-- -->
 
 ``` r
 # Filter the dataset for specific weather descriptions
