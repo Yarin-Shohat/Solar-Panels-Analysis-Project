@@ -897,8 +897,6 @@ print(complete_cases)
          y = "Daily Energy Yield (kWh)")
 ```
 
-    ## `geom_smooth()` using formula = 'y ~ x'
-
 ![](README_files/figure-gfm/Correlation%20between%20Daily%20Energy%20Yield%20and%20Temperature-1.png)<!-- -->
 
 ``` r
