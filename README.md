@@ -9,7 +9,7 @@ This repository contains the analysis and findings for our team project in SISE2
 ### Repository Structure
 
 - `code/`: R script for data processing and analysis
-- `code/figures/`: Output graphs and charts
+- `code/README_files/figure-gfm/`: Output graphs and charts
 
 ### Getting Started
 
