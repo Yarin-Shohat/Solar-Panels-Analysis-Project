@@ -1,75 +1,24 @@
-Data Anlysis Project - Solar Panels
-================
-Team 2
+---
+title: "Data Anlysis Project - Solar Panels"
+author: "Team 2"
+mainfont: Roboto
+output:
+  github_document:
+    toc: true
+fig_caption: true
+---
 
-- [Preprocessing](#preprocessing)
-  - [Load Library For Preprocessing](#load-library-for-preprocessing)
-  - [Read Data](#read-data)
-    - [Read Altitudes Data](#read-altitudes-data)
-    - [Read Electric Data](#read-electric-data)
-    - [Read Weather Data from Meteorological
-      Service](#read-weather-data-from-meteorological-service)
-    - [Read Weather Data from Visual
-      Crossing](#read-weather-data-from-visual-crossing)
-  - [Preprocess Electric Data and Merge to one
-    DF](#preprocess-electric-data-and-merge-to-one-df)
-    - [Preprocess Electric Data](#preprocess-electric-data)
-    - [Merge Electric Data to one DF](#merge-electric-data-to-one-df)
-  - [Preprocess Weather Data from Meteorological Service and Merge to
-    one
-    DF](#preprocess-weather-data-from-meteorological-service-and-merge-to-one-df)
-    - [Merge Weather Data from Meteorological Service to one
-      DF](#merge-weather-data-from-meteorological-service-to-one-df)
-    - [Preprocess Weather Data from Meteorological Service to one
-      DF](#preprocess-weather-data-from-meteorological-service-to-one-df)
-    - [Join Weather Data from Meteorological Service With Electric
-      Data](#join-weather-data-from-meteorological-service-with-electric-data)
-  - [Preprocess Weather Data from Visual Crossing and Merge to one
-    DF](#preprocess-weather-data-from-visual-crossing-and-merge-to-one-df)
-    - [Merge and Preprocess Weather Data from Visual Crossing to one
-      DF](#merge-and-preprocess-weather-data-from-visual-crossing-to-one-df)
-    - [Join Weather Data from Meteorological Service and Electric Data
-      with Visual
-      Crossing](#join-weather-data-from-meteorological-service-and-electric-data-with-visual-crossing)
-  - [Missing Values Handelling](#missing-values-handelling)
-  - [Feature Engineering](#feature-engineering)
-    - [Season Column](#season-column)
-    - [Altitude Column](#altitude-column)
-    - [Area Column](#area-column)
-    - [Temperature Range](#temperature-range)
-- [Data Analysis](#data-analysis)
-  - [Visualization](#visualization)
-  - [Linear Regression](#linear-regression)
-    - [Regular Linear Regression for Weather
-      Features](#regular-linear-regression-for-weather-features)
-    - [Fixed Model Linear Regression for Weather
-      Features](#fixed-model-linear-regression-for-weather-features)
-    - [Fixed Model Linear Regression for Location
-      Features](#fixed-model-linear-regression-for-location-features)
-    - [Combined Linear Regression for Weather Features & Location
-      Features](#combined-linear-regression-for-weather-features--location-features)
-  - [Bootstrap](#bootstrap)
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(knitr)
+```
 
 # Preprocessing
 
 ## Load Library For Preprocessing
 
-``` r
+```{r}
 library(tidyverse)
-```
-
-    ## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-    ## ✔ dplyr     1.1.4     ✔ readr     2.1.5
-    ## ✔ forcats   1.0.0     ✔ stringr   1.5.1
-    ## ✔ ggplot2   3.5.1     ✔ tibble    3.2.1
-    ## ✔ lubridate 1.9.3     ✔ tidyr     1.3.1
-    ## ✔ purrr     1.0.2     
-    ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-    ## ✖ dplyr::filter() masks stats::filter()
-    ## ✖ dplyr::lag()    masks stats::lag()
-    ## ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
-
-``` r
 library(readxl)
 ```
 
@@ -79,7 +28,7 @@ Link to Drive of the Data files is in the Final Report
 
 ### Read Altitudes Data
 
-``` r
+```{r}
 # Read the Data for Altitudes for the Locations
 Altitudes <- read_excel("../data/Altitudes.xlsx")
 ```
@@ -88,7 +37,7 @@ Altitudes <- read_excel("../data/Altitudes.xlsx")
 
 **Note: This is Private data**
 
-``` r
+```{r}
 # Read the Data of Solar Panels
 suppressMessages({
   suppressWarnings({ Revivim <- read_excel("../data/Revivim.xlsx") })
@@ -105,7 +54,7 @@ suppressMessages({
 
 ### Read Weather Data from Meteorological Service
 
-``` r
+```{r}
 # Read Weather Data from Meteorological Service
 Ashkelon_Weather <- suppressWarnings(read_excel("../data/Ashkelon_Weather.xlsx"))
 Beer_Sheva_Weather <- suppressWarnings(read_excel("../data/Beer_Sheva_Weather.xlsx"))
@@ -120,7 +69,7 @@ Revivim_Weather <- suppressWarnings(read_excel("../data/Revivim_Weather.xlsx"))
 
 ### Read Weather Data from Visual Crossing
 
-``` r
+```{r}
 # Read Weather Data from Visual Crossing
 Revivim_Weather2 <- read.csv("../data/Revivim 2023-01-01 to 2023-12-31.csv")
 Nir_David_Weather2 <- read.csv("../data/Nir David 2023-01-01 to 2023-12-31.csv")
@@ -137,7 +86,7 @@ Naharia_Weather2 <- read.csv("../data/Naharia 2023-01-01 to 2023-12-31.csv")
 
 ### Preprocess Electric Data
 
-``` r
+```{r}
 # Select the columns we need from Solar Data
 Ashkelon <- Ashkelon %>% 
   select(Timestamp,
@@ -299,16 +248,17 @@ naharia <- process_df(Naharia, "Naharia",
 
 ### Merge Electric Data to one DF
 
-``` r
+```{r}
 # Merge all data frames
 Solar_df <- bind_rows(ashkelon, revivim, nir_david, beer_sheva, elifaz, emek_hefer, jerusalem, kfar_rupin, naharia)
 ```
+
 
 ## Preprocess Weather Data from Meteorological Service and Merge to one DF
 
 ### Merge Weather Data from Meteorological Service to one DF
 
-``` r
+```{r}
 # Create a function to rename columns
 # The Function is change the columns name to uniform names
 #
@@ -354,7 +304,7 @@ Weather_df <- bind_rows(
 
 ### Preprocess Weather Data from Meteorological Service to one DF
 
-``` r
+```{r}
 # Remove the Time from the Timestamp column - now we having only Date
 Weather_df <- Weather_df %>%
   mutate(Timestamp = dmy_hm(Timestamp) %>% # Parse the date-time string
@@ -384,7 +334,7 @@ Weather_df <- Weather_df %>%
 
 ### Join Weather Data from Meteorological Service With Electric Data
 
-``` r
+```{r}
 # Join the data frames
 merged_df <- inner_join(Weather_df, Solar_df, by = c("Location", "Timestamp"))
 ```
@@ -393,7 +343,7 @@ merged_df <- inner_join(Weather_df, Solar_df, by = c("Location", "Timestamp"))
 
 ### Merge and Preprocess Weather Data from Visual Crossing to one DF
 
-``` r
+```{r}
 # The Function is change date column do regular format of date
 #
 # @param df - The Data Frame
@@ -438,7 +388,7 @@ Weather_df2 <- Weather_df2 %>%
 
 ### Join Weather Data from Meteorological Service and Electric Data with Visual Crossing
 
-``` r
+```{r}
 # Join the data frames
 merged_df <- inner_join(Weather_df2, merged_df, by = c("Location", "Timestamp"))
 
@@ -479,7 +429,7 @@ merged_df <- merged_df %>% select(Location,
 
 Check for NA and NULL Values
 
-``` r
+```{r}
 # Check for NULL values
 null_values <- sapply(merged_df, function(x) sum(is.null(x)))
 
@@ -493,73 +443,15 @@ complete_cases <- sum(complete.cases(merged_df))
 
 # Null values
 print(null_values)
-```
-
-    ##                    Location                   Timestamp 
-    ##                           0                           0 
-    ##      Daily_energy_yield_kWh               Temperature_C 
-    ##                           0                           0 
-    ##           Max_Temperature_C           Min_Temperature_C 
-    ##                           0                           0 
-    ##   Relative_Humidity_Percent                     Rain_mm 
-    ##                           0                           0 
-    ##                Current_AC_A            Direct_Current_A 
-    ##                           0                           0 
-    ##                AC_Voltage_V                Voltage_DC_V 
-    ##                           0                           0 
-    ##              Daylight_Hours     Temperature_C_Feel_Like 
-    ##                           0                           0 
-    ## Max_Temperature_C_Fell_Like Min_Temperature_C_Feel_Like 
-    ##                           0                           0 
-    ##             Solar_Radiation                    UV_Index 
-    ##                           0                           0 
-    ##                  Wind_Speed                   Wind_Gust 
-    ##                           0                           0 
-    ##                  Visibility                 Cloud_Cover 
-    ##                           0                           0 
-    ##                 Description 
-    ##                           0
-
-``` r
 # NA values
 print(na_values)
-```
-
-    ##                    Location                   Timestamp 
-    ##                           0                           0 
-    ##      Daily_energy_yield_kWh               Temperature_C 
-    ##                           2                          50 
-    ##           Max_Temperature_C           Min_Temperature_C 
-    ##                          44                          45 
-    ##   Relative_Humidity_Percent                     Rain_mm 
-    ##                          53                          11 
-    ##                Current_AC_A            Direct_Current_A 
-    ##                           2                           2 
-    ##                AC_Voltage_V                Voltage_DC_V 
-    ##                           2                           2 
-    ##              Daylight_Hours     Temperature_C_Feel_Like 
-    ##                           0                           0 
-    ## Max_Temperature_C_Fell_Like Min_Temperature_C_Feel_Like 
-    ##                           0                           0 
-    ##             Solar_Radiation                    UV_Index 
-    ##                           0                           0 
-    ##                  Wind_Speed                   Wind_Gust 
-    ##                           0                           0 
-    ##                  Visibility                 Cloud_Cover 
-    ##                           0                           0 
-    ##                 Description 
-    ##                           0
-
-``` r
 # Complete cases
 print(complete_cases)
 ```
 
-    ## [1] 3208
-
 Handelling Missing Values Step:
 
-``` r
+```{r}
 # Handelling Missing Values Step:
 
 # Function to use the formula of the interpolation
@@ -605,7 +497,7 @@ df <- merged_df %>%
 
 Check for NA and NULL Values
 
-``` r
+```{r}
 # Check for NULL values
 null_values <- sapply(df, function(x) sum(is.null(x)))
 
@@ -619,77 +511,20 @@ complete_cases <- sum(complete.cases(df))
 
 # Null values
 print(null_values)
-```
-
-    ##                    Location                   Timestamp 
-    ##                           0                           0 
-    ##      Daily_energy_yield_kWh               Temperature_C 
-    ##                           0                           0 
-    ##           Max_Temperature_C           Min_Temperature_C 
-    ##                           0                           0 
-    ##   Relative_Humidity_Percent                     Rain_mm 
-    ##                           0                           0 
-    ##                Current_AC_A            Direct_Current_A 
-    ##                           0                           0 
-    ##                AC_Voltage_V                Voltage_DC_V 
-    ##                           0                           0 
-    ##              Daylight_Hours     Temperature_C_Feel_Like 
-    ##                           0                           0 
-    ## Max_Temperature_C_Fell_Like Min_Temperature_C_Feel_Like 
-    ##                           0                           0 
-    ##             Solar_Radiation                    UV_Index 
-    ##                           0                           0 
-    ##                  Wind_Speed                   Wind_Gust 
-    ##                           0                           0 
-    ##                  Visibility                 Cloud_Cover 
-    ##                           0                           0 
-    ##                 Description 
-    ##                           0
-
-``` r
 # NA values
 print(na_values)
-```
-
-    ##                    Location                   Timestamp 
-    ##                           0                           0 
-    ##      Daily_energy_yield_kWh               Temperature_C 
-    ##                           0                           0 
-    ##           Max_Temperature_C           Min_Temperature_C 
-    ##                           0                           0 
-    ##   Relative_Humidity_Percent                     Rain_mm 
-    ##                           0                           0 
-    ##                Current_AC_A            Direct_Current_A 
-    ##                           0                           0 
-    ##                AC_Voltage_V                Voltage_DC_V 
-    ##                           0                           0 
-    ##              Daylight_Hours     Temperature_C_Feel_Like 
-    ##                           0                           0 
-    ## Max_Temperature_C_Fell_Like Min_Temperature_C_Feel_Like 
-    ##                           0                           0 
-    ##             Solar_Radiation                    UV_Index 
-    ##                           0                           0 
-    ##                  Wind_Speed                   Wind_Gust 
-    ##                           0                           0 
-    ##                  Visibility                 Cloud_Cover 
-    ##                           0                           0 
-    ##                 Description 
-    ##                           0
-
-``` r
 # Complete cases
 print(complete_cases)
 ```
 
-    ## [1] 3281
 
-## Feature Engineering
+## Feature Engineering 
 
 ### Season Column
 
 Create Season Column and add Dummy variables
 
-``` r
+```{r}
 # Create Season column by the number of the month - From Wikipedia
 df <- df %>%
   mutate(Timestamp = as.Date(Timestamp),
@@ -730,7 +565,7 @@ df <- create_dummy_variables(df, "Season")
 
 Create Altitudes Column
 
-``` r
+```{r}
 # Merge altitude data with df based on Location
 df <- merge(df, Altitudes, by = "Location", all.x = TRUE)
 ```
@@ -739,7 +574,7 @@ df <- merge(df, Altitudes, by = "Location", all.x = TRUE)
 
 Create Area Column and add Dummy variables
 
-``` r
+```{r}
 # Create Area column based on Location - From Google Maps
 df$Area <- ifelse(df$Location %in% c("Naharia", "Kfar_Rupin", "Nir_David"), "North",
                          ifelse(df$Location %in% c("Emek_Hefer", "Jerusalem"), "Center",
@@ -754,16 +589,17 @@ df <- create_dummy_variables(df, "Area")
 
 Create Temperature Range Column
 
-``` r
+```{r}
 # Create a new variable for temperature ranges
 df$Temperature_Range <- cut(df$Temperature_C, breaks = 5, labels = c("Very Low", "Low", "Medium", "High", "Very High"))
 ```
+
 
 # Data Analysis
 
 ## Visualization
 
-``` r
+```{r Correlation between Daily Energy Yield and Temperature}
 # Temperature vs. Daily Energy Yield
   ggplot(df, aes(x = Temperature_C, y = Daily_energy_yield_kWh)) +
     geom_point() +
@@ -773,11 +609,7 @@ df$Temperature_Range <- cut(df$Temperature_C, breaks = 5, labels = c("Very Low",
          y = "Daily Energy Yield (kWh)")
 ```
 
-    ## `geom_smooth()` using formula = 'y ~ x'
-
-![](README_files/figure-gfm/Correlation%20between%20Daily%20Energy%20Yield%20and%20Temperature-1.png)<!-- -->
-
-``` r
+```{r Linear Regression Energy Yield vs Rain}
 # Rain vs. Daily Energy Yield
 ggplot(df, aes(x = Rain_mm, y = Daily_energy_yield_kWh)) +
   geom_point(alpha = 0.5) +
@@ -793,20 +625,7 @@ ggplot(df, aes(x = Rain_mm, y = Daily_energy_yield_kWh)) +
   ylim(0, 8)
 ```
 
-    ## `geom_smooth()` using formula = 'y ~ x'
-
-    ## Warning: Removed 2 rows containing non-finite outside the scale range
-    ## (`stat_smooth()`).
-
-    ## Warning: Removed 2 rows containing missing values or values outside the scale range
-    ## (`geom_point()`).
-
-    ## Warning: Removed 26 rows containing missing values or values outside the scale range
-    ## (`geom_smooth()`).
-
-![](README_files/figure-gfm/Linear%20Regression%20Energy%20Yield%20vs%20Rain-1.png)<!-- -->
-
-``` r
+```{r Effect of Cloud Cover on Daily Energy Yield}
 # Cloud Cover vs. Daily Energy Yield
 suppressWarnings(suppressMessages(ggplot(df, aes(x = Cloud_Cover, y = Daily_energy_yield_kWh)) +
   geom_point() +
@@ -816,11 +635,7 @@ suppressWarnings(suppressMessages(ggplot(df, aes(x = Cloud_Cover, y = Daily_ener
        y = "Daily Energy Yield (kWh)")))
 ```
 
-    ## `geom_smooth()` using formula = 'y ~ x'
-
-![](README_files/figure-gfm/Effect%20of%20Cloud%20Cover%20on%20Daily%20Energy%20Yield-1.png)<!-- -->
-
-``` r
+```{r Wind Speed vs Daily Energy Yield}
 # Wind Speed vs. Daily Energy Yield
 ggplot(df, aes(x = Wind_Speed, y = Daily_energy_yield_kWh)) +
   geom_point() +
@@ -828,13 +643,10 @@ ggplot(df, aes(x = Wind_Speed, y = Daily_energy_yield_kWh)) +
   labs(title = "Wind Speed vs. Daily Energy Yield",
        x = "Wind Speed (m/s)",
        y = "Daily Energy Yield (kWh)")
+
 ```
 
-    ## `geom_smooth()` using formula = 'y ~ x'
-
-![](README_files/figure-gfm/Wind%20Speed%20vs%20Daily%20Energy%20Yield-1.png)<!-- -->
-
-``` r
+```{r Solar Radiation vs. Daily Energy Yield}
 # Solar Radiation vs. Daily Energy Yield
 suppressWarnings(suppressMessages(ggplot(df, aes(x = Solar_Radiation, y = Daily_energy_yield_kWh)) +
   geom_point() +
@@ -844,11 +656,7 @@ suppressWarnings(suppressMessages(ggplot(df, aes(x = Solar_Radiation, y = Daily_
        y = "Daily Energy Yield (kWh)")))
 ```
 
-    ## `geom_smooth()` using formula = 'y ~ x'
-
-![](README_files/figure-gfm/Solar%20Radiation%20vs.%20Daily%20Energy%20Yield-1.png)<!-- -->
-
-``` r
+```{r Impact of Altitude on Daily Energy Yield}
 # Impact of Altitude on Daily Energy Yield
 ggplot(df, aes(x = Altitude, y = Daily_energy_yield_kWh)) +
   geom_point() +
@@ -856,13 +664,10 @@ ggplot(df, aes(x = Altitude, y = Daily_energy_yield_kWh)) +
   labs(title = "Impact of Altitude on Daily Energy Yield",
        x = "Altitude",
        y = "Daily Energy Yield (kWh)")
+
 ```
 
-    ## `geom_smooth()` using formula = 'y ~ x'
-
-![](README_files/figure-gfm/Impact%20of%20Altitude%20on%20Daily%20Energy%20Yield-1.png)<!-- -->
-
-``` r
+```{r Relationship between UV Index and Daily Energy Yield}
 # Relationship between UV Index and Daily Energy Yield
 ggplot(df, aes(x = UV_Index, y = Daily_energy_yield_kWh)) +
   geom_point() +
@@ -870,13 +675,10 @@ ggplot(df, aes(x = UV_Index, y = Daily_energy_yield_kWh)) +
   labs(title = "Relationship between UV Index and Daily Energy Yield",
        x = "UV Index",
        y = "Daily Energy Yield (kWh)")
+
 ```
 
-    ## `geom_smooth()` using formula = 'y ~ x'
-
-![](README_files/figure-gfm/Relationship%20between%20UV%20Index%20and%20Daily%20Energy%20Yield-1.png)<!-- -->
-
-``` r
+```{r Histogram of Energy Yield}
 # Histogram for Daily Energy Yield with respect to Temperature Ranges
 ggplot(df, aes(x = Temperature_Range, y = Daily_energy_yield_kWh)) +
   geom_bar(stat = "identity", fill = "blue", color = df$Temperature_Range, alpha = 0.7) +
@@ -889,9 +691,7 @@ ggplot(df, aes(x = Temperature_Range, y = Daily_energy_yield_kWh)) +
   theme_minimal()
 ```
 
-![](README_files/figure-gfm/Histogram%20of%20Energy%20Yield-1.png)<!-- -->
-
-``` r
+```{r Energy Yield Distribution by Weather Description}
 # Filter the dataset for specific weather descriptions
 filtered_df <- df %>%
   filter(Description %in% c("Clear", "Partially cloudy", "Rain, Partially cloudy"))
@@ -906,17 +706,11 @@ ggplot(filtered_df, aes(x = Description, y = Daily_energy_yield_kWh, fill = Desc
     theme(axis.title.x=element_blank(),
         axis.text.x=element_blank(),
         axis.ticks.x=element_blank())
+
 ```
 
-![](README_files/figure-gfm/Energy%20Yield%20Distribution%20by%20Weather%20Description-1.png)<!-- -->
-
-``` r
+```{r Correlation Matrix}
 library(corrplot)
-```
-
-    ## corrplot 0.92 loaded
-
-``` r
 # Calculate the correlation matrix
 cor_matrix <- cor(df[, c("Daily_energy_yield_kWh", "Temperature_C", "Relative_Humidity_Percent", "Solar_Radiation", "UV_Index", "Rain_mm", "Wind_Speed", "Cloud_Cover")])
 
@@ -924,9 +718,7 @@ corrplot(cor_matrix, method = "color", type = "full", addrect = 4,
          tl.col = "black")
 ```
 
-![](README_files/figure-gfm/Correlation%20Matrix-1.png)<!-- -->
-
-``` r
+```{r Ridgeline Plot of Energy Yield by Season}
 library(ggridges)
 
 # Ridgeline Plot
@@ -935,11 +727,7 @@ ggplot(df, aes(x = Daily_energy_yield_kWh, y = Season, fill = Season)) +
   labs(title = "Ridgeline Plot of Energy Yield by Season", x = "Daily Energy Yield (kWh)", y = "Season")
 ```
 
-    ## Picking joint bandwidth of 0.311
-
-![](README_files/figure-gfm/Ridgeline%20Plot%20of%20Energy%20Yield%20by%20Season-1.png)<!-- -->
-
-``` r
+```{r Energy Yield vs Temperature With Season}
 # Scatter plot with regression line
 ggplot(df, aes(x = Temperature_C, y = Daily_energy_yield_kWh, color = Area)) +
   geom_point(alpha = 0.5) +
@@ -948,13 +736,10 @@ ggplot(df, aes(x = Temperature_C, y = Daily_energy_yield_kWh, color = Area)) +
   facet_wrap(~ Season)
 ```
 
-    ## `geom_smooth()` using formula = 'y ~ x'
-
-![](README_files/figure-gfm/Energy%20Yield%20vs%20Temperature%20With%20Season-1.png)<!-- -->
 
 ## Linear Regression
 
-``` r
+```{r}
 # Load necessary libraries
 suppressMessages(library(tidymodels))
 library(broom)
@@ -973,7 +758,7 @@ test_data  <- testing(df_split)
 
 ### Regular Linear Regression for Weather Features
 
-``` r
+```{r}
 # Fit the linear regression
 df_fit <- linear_reg() %>% 
   set_engine("lm") %>% 
@@ -985,36 +770,13 @@ lm_fit <- df_fit$fit
 # Get the tidy coefficients
 tidy_coefs <- tidy(lm_fit)
 print(tidy_coefs)
-```
 
-    ## # A tibble: 9 × 5
-    ##   term                      estimate std.error statistic  p.value
-    ##   <chr>                        <dbl>     <dbl>     <dbl>    <dbl>
-    ## 1 (Intercept)                1.75     0.208        8.42  6.09e-17
-    ## 2 Temperature_C              0.00531  0.00489      1.09  2.77e- 1
-    ## 3 Relative_Humidity_Percent -0.00159  0.00176     -0.904 3.66e- 1
-    ## 4 Rain_mm                   -3.10     0.756       -4.10  4.20e- 5
-    ## 5 Solar_Radiation            0.00688  0.000820     8.39  8.41e-17
-    ## 6 UV_Index                   0.124    0.0325       3.81  1.42e- 4
-    ## 7 Wind_Speed                -0.0105   0.00458     -2.29  2.20e- 2
-    ## 8 Wind_Gust                  0.0132   0.00234      5.63  1.99e- 8
-    ## 9 Cloud_Cover               -0.0148   0.00132    -11.3   9.33e-29
-
-``` r
 # Get the model summary statistics
 model_summary <- glance(lm_fit)
 
 # Print the model summary statistics
 print(model_summary)
-```
 
-    ## # A tibble: 1 × 12
-    ##   r.squared adj.r.squared sigma statistic   p.value    df logLik   AIC   BIC
-    ##       <dbl>         <dbl> <dbl>     <dbl>     <dbl> <dbl>  <dbl> <dbl> <dbl>
-    ## 1     0.460         0.458  1.15      261. 3.29e-321     8 -3837. 7694. 7753.
-    ## # ℹ 3 more variables: deviance <dbl>, df.residual <int>, nobs <int>
-
-``` r
 # Extract RMSE from residuals
 rmse <- sqrt(mean(lm_fit$residuals^2))
 
@@ -1022,23 +784,12 @@ rmse <- sqrt(mean(lm_fit$residuals^2))
 cat("RMSE: ", rmse, "\n")
 ```
 
-    ## RMSE:  1.151319
-
 ### Fixed Model Linear Regression for Weather Features
 
-``` r
+```{r}
 # Load necessary libraries
 library(plm)
-```
 
-    ## 
-    ## Attaching package: 'plm'
-
-    ## The following objects are masked from 'package:dplyr':
-    ## 
-    ##     between, lag, lead
-
-``` r
 # Convert the data to a tibble
 df_tibble <- as_tibble(df)
 
@@ -1049,41 +800,7 @@ fixed_model_weather <- plm(Daily_energy_yield_kWh ~ Temperature_C + Relative_Hum
 
 # Summary of the model
 summary(fixed_model_weather)
-```
 
-    ## Oneway (individual) effect Within Model
-    ## 
-    ## Call:
-    ## plm(formula = Daily_energy_yield_kWh ~ Temperature_C + Relative_Humidity_Percent + 
-    ##     Rain_mm + Solar_Radiation + UV_Index + Wind_Speed + Wind_Gust + 
-    ##     Cloud_Cover + factor(Location), data = df_tibble, model = "within")
-    ## 
-    ## Unbalanced Panel: n = 9, T = 361-365, N = 3281
-    ## 
-    ## Residuals:
-    ##      Min.   1st Qu.    Median   3rd Qu.      Max. 
-    ## -3.581618 -0.316978  0.052145  0.345381  2.584073 
-    ## 
-    ## Coefficients:
-    ##                              Estimate  Std. Error  t-value  Pr(>|t|)    
-    ## Temperature_C             -0.02356385  0.00226916 -10.3844 < 2.2e-16 ***
-    ## Relative_Humidity_Percent -0.00447790  0.00094271  -4.7500 2.122e-06 ***
-    ## Rain_mm                   -3.30848247  0.35362008  -9.3560 < 2.2e-16 ***
-    ## Solar_Radiation            0.01078620  0.00035393  30.4754 < 2.2e-16 ***
-    ## UV_Index                   0.08952409  0.01384091   6.4681 1.141e-10 ***
-    ## Wind_Speed                -0.01450594  0.00228327  -6.3532 2.402e-10 ***
-    ## Wind_Gust                  0.00759537  0.00130118   5.8373 5.825e-09 ***
-    ## Cloud_Cover               -0.00857176  0.00057556 -14.8929 < 2.2e-16 ***
-    ## ---
-    ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-    ## 
-    ## Total Sum of Squares:    5078.6
-    ## Residual Sum of Squares: 1049.3
-    ## R-Squared:      0.79339
-    ## Adj. R-Squared: 0.79237
-    ## F-statistic: 1566.7 on 8 and 3264 DF, p-value: < 2.22e-16
-
-``` r
 # Extract residuals
 residuals <- residuals(fixed_model_weather)
 
@@ -1094,11 +811,9 @@ rmse <- sqrt(mean(residuals^2))
 cat("RMSE: ", rmse)
 ```
 
-    ## RMSE:  0.5655196
-
 ### Fixed Model Linear Regression for Location Features
 
-``` r
+```{r}
 # Load necessary libraries
 library(plm)
 
@@ -1113,34 +828,7 @@ fixed_model_area <- plm(Daily_energy_yield_kWh ~ Altitude + AreaSouth + AreaCent
 
 # Summary of the model
 summary(fixed_model_area)
-```
 
-    ## Oneway (individual) effect Within Model
-    ## 
-    ## Call:
-    ## plm(formula = Daily_energy_yield_kWh ~ Altitude + AreaSouth + 
-    ##     AreaCenter + AreaNorth + Daylight_Hours + factor(Location), 
-    ##     data = df_tibble, model = "within")
-    ## 
-    ## Unbalanced Panel: n = 9, T = 361-365, N = 3281
-    ## 
-    ## Residuals:
-    ##     Min.  1st Qu.   Median  3rd Qu.     Max. 
-    ## -3.96679 -0.36329  0.20833  0.55547  1.61216 
-    ## 
-    ## Coefficients:
-    ##                Estimate Std. Error t-value  Pr(>|t|)    
-    ## Daylight_Hours  0.63858    0.01033  61.819 < 2.2e-16 ***
-    ## ---
-    ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-    ## 
-    ## Total Sum of Squares:    5078.6
-    ## Residual Sum of Squares: 2342.2
-    ## R-Squared:      0.53881
-    ## Adj. R-Squared: 0.53754
-    ## F-statistic: 3821.52 on 1 and 3271 DF, p-value: < 2.22e-16
-
-``` r
 # Extract residuals
 residuals <- residuals(fixed_model_area)
 
@@ -1149,35 +837,18 @@ rmse <- sqrt(mean(residuals^2))
 
 # Print RMSE
 cat("RMSE: ", rmse)
+
 ```
 
-    ## RMSE:  0.8449048
 
 ### Combined Linear Regression for Weather Features & Location Features
 
 Check the proportions for the 2 Linear Regression Models
 
-``` r
+```{r}
 # Load necessary libraries
 library(caret) # For RMSE calculation
-```
 
-    ## Warning: package 'caret' was built under R version 4.4.1
-
-    ## Loading required package: lattice
-
-    ## 
-    ## Attaching package: 'caret'
-
-    ## The following objects are masked from 'package:yardstick':
-    ## 
-    ##     precision, recall, sensitivity, specificity
-
-    ## The following object is masked from 'package:purrr':
-    ## 
-    ##     lift
-
-``` r
 # Assuming you have a dataset df with predictors and response variable 'Daily_energy_yield_kWh'
 # Ensure the new data frame new_df is properly structured
 new_df <- df  # Here, replace with your actual new data
@@ -1240,33 +911,9 @@ for (w1 in seq(0, 1, by = 0.05)) {
 print(results)
 ```
 
-    ##    w1_Weather w2_Area      RMSE R_squared Adjusted_R_squared       P_value
-    ## 1        0.00    1.00 1.2441360 0.3582153          0.3542780 2.501085e-295
-    ## 2        0.05    0.95 1.1987182 0.4042174          0.4005623  0.000000e+00
-    ## 3        0.10    0.90 1.1558552 0.4460629          0.4426645  0.000000e+00
-    ## 4        0.15    0.85 1.1158414 0.4837518          0.4805846  0.000000e+00
-    ## 5        0.20    0.80 1.0789940 0.5172840          0.5143226  0.000000e+00
-    ## 6        0.25    0.75 1.0456476 0.5466597          0.5438785  0.000000e+00
-    ## 7        0.30    0.70 1.0161470 0.5718788          0.5692523  0.000000e+00
-    ## 8        0.35    0.65 0.9908358 0.5929413          0.5904440  0.000000e+00
-    ## 9        0.40    0.60 0.9700421 0.6098472          0.6074536  0.000000e+00
-    ## 10       0.45    0.55 0.9540611 0.6225965          0.6202811  0.000000e+00
-    ## 11       0.50    0.50 0.9431375 0.6311891          0.6289265  0.000000e+00
-    ## 12       0.55    0.45 0.9374483 0.6356252          0.6333898  0.000000e+00
-    ## 13       0.60    0.40 0.9370887 0.6359047          0.6336710  0.000000e+00
-    ## 14       0.65    0.35 0.9420649 0.6320276          0.6297701  0.000000e+00
-    ## 15       0.70    0.30 0.9522931 0.6239939          0.6216871  0.000000e+00
-    ## 16       0.75    0.25 0.9676069 0.6118036          0.6094220  0.000000e+00
-    ## 17       0.80    0.20 0.9877697 0.5954567          0.5929748  0.000000e+00
-    ## 18       0.85    0.15 1.0124920 0.5749532          0.5723455  0.000000e+00
-    ## 19       0.90    0.10 1.0414490 0.5502930          0.5475341  0.000000e+00
-    ## 20       0.95    0.05 1.0742983 0.5214763          0.5185406  0.000000e+00
-    ## 21       1.00    0.00 1.1106947 0.4885030          0.4853650  0.000000e+00
+The selected relations are: 0.6 to the Weather Regression and 0.4 to the Area Regression
 
-The selected relations are: 0.6 to the Weather Regression and 0.4 to the
-Area Regression
-
-``` r
+```{r}
 library(caret) # For RMSE calculation
 
 # Assuming you have a dataset df with predictors and response variable 'y'
@@ -1305,31 +952,15 @@ p_value_combined <- pf(f_statistic, p, n - p - 1, lower.tail = FALSE)
 
 # Print results with high precision for p-value
 cat("RMSE:", rmse_combined, "\n")
-```
-
-    ## RMSE: 0.9370887
-
-``` r
 cat("R-squared:", r_squared_combined, "\n")
-```
-
-    ## R-squared: 0.6359047
-
-``` r
 cat("Adjusted R-squared:", adj_r_squared_combined, "\n")
-```
-
-    ## Adjusted R-squared: 0.633671
-
-``` r
 cat(sprintf("P-value: %.10f\n", p_value_combined))  # Print p-value with high precision
 ```
 
-    ## P-value: 0.0000000000
 
 ## Bootstrap
 
-``` r
+```{r}
 # Load necessary libraries
 library(tidyverse)
 library(broom)
@@ -1366,7 +997,7 @@ boot_metrics <- boot_results %>%
   unnest(metrics)
 ```
 
-``` r
+```{r Bootstrap distributions of regression coefficients}
 # Plot distribution of coefficients
 ggplot(boot_coefs, aes(x = estimate)) +
   geom_histogram(bins = 30) +
@@ -1374,9 +1005,7 @@ ggplot(boot_coefs, aes(x = estimate)) +
   labs(title = "Bootstrap distributions of regression coefficients")
 ```
 
-![](README_files/figure-gfm/Bootstrap%20distributions%20of%20regression%20coefficients-1.png)<!-- -->
-
-``` r
+```{r Bootstrap distributions of model metrics}
 # Plot distribution of metrics
 ggplot(boot_metrics, aes(x = estimate)) +
   geom_histogram(bins = 30) +
@@ -1384,9 +1013,7 @@ ggplot(boot_metrics, aes(x = estimate)) +
   labs(title = "Bootstrap distributions of model metrics")
 ```
 
-![](README_files/figure-gfm/Bootstrap%20distributions%20of%20model%20metrics-1.png)<!-- -->
-
-``` r
+```{r}
 # Calculate confidence intervals for coefficients
 ci_coefs <- boot_coefs %>%
   group_by(term) %>%
@@ -1406,28 +1033,6 @@ ci_metrics <- boot_metrics %>%
   )
 
 print(ci_coefs)
-```
-
-    ## # A tibble: 9 × 4
-    ##   term                      mean_estimate lower_ci upper_ci
-    ##   <chr>                             <dbl>    <dbl>    <dbl>
-    ## 1 (Intercept)                     1.74     1.40     2.06   
-    ## 2 Cloud_Cover                    -0.0146  -0.0168  -0.0123 
-    ## 3 Rain_mm                        -3.65    -5.78    -1.97   
-    ## 4 Relative_Humidity_Percent      -0.00121 -0.00421  0.00176
-    ## 5 Solar_Radiation                 0.00686  0.00549  0.00821
-    ## 6 Temperature_C                   0.00664 -0.00121  0.0147 
-    ## 7 UV_Index                        0.114    0.0652   0.163  
-    ## 8 Wind_Gust                       0.0141   0.0110   0.0171 
-    ## 9 Wind_Speed                     -0.00972 -0.0165  -0.00271
-
-``` r
 print(ci_metrics)
 ```
 
-    ## # A tibble: 3 × 4
-    ##   term   mean_estimate lower_ci upper_ci
-    ##   <chr>          <dbl>    <dbl>    <dbl>
-    ## 1 R2             0.456    0.429    0.482
-    ## 2 RMSE           1.15     1.12     1.17 
-    ## 3 adj_R2         0.454    0.428    0.481
