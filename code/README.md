@@ -56,20 +56,6 @@ Team 2
 
 ``` r
 library(tidyverse)
-```
-
-    ## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-    ## ✔ dplyr     1.1.4     ✔ readr     2.1.5
-    ## ✔ forcats   1.0.0     ✔ stringr   1.5.1
-    ## ✔ ggplot2   3.5.1     ✔ tibble    3.2.1
-    ## ✔ lubridate 1.9.3     ✔ tidyr     1.3.1
-    ## ✔ purrr     1.0.2     
-    ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-    ## ✖ dplyr::filter() masks stats::filter()
-    ## ✖ dplyr::lag()    masks stats::lag()
-    ## ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
-
-``` r
 library(readxl)
 ```
 
@@ -773,8 +759,6 @@ df$Temperature_Range <- cut(df$Temperature_C, breaks = 5, labels = c("Very Low",
          y = "Daily Energy Yield (kWh)")
 ```
 
-    ## `geom_smooth()` using formula = 'y ~ x'
-
 ![](README_files/figure-gfm/Correlation%20between%20Daily%20Energy%20Yield%20and%20Temperature-1.png)<!-- -->
 
 ``` r
@@ -793,17 +777,6 @@ ggplot(df, aes(x = Rain_mm, y = Daily_energy_yield_kWh)) +
   ylim(0, 8)
 ```
 
-    ## `geom_smooth()` using formula = 'y ~ x'
-
-    ## Warning: Removed 2 rows containing non-finite outside the scale range
-    ## (`stat_smooth()`).
-
-    ## Warning: Removed 2 rows containing missing values or values outside the scale range
-    ## (`geom_point()`).
-
-    ## Warning: Removed 26 rows containing missing values or values outside the scale range
-    ## (`geom_smooth()`).
-
 ![](README_files/figure-gfm/Linear%20Regression%20Energy%20Yield%20vs%20Rain-1.png)<!-- -->
 
 ``` r
@@ -815,8 +788,6 @@ suppressWarnings(suppressMessages(ggplot(df, aes(x = Cloud_Cover, y = Daily_ener
        x = "Cloud Cover (%)",
        y = "Daily Energy Yield (kWh)")))
 ```
-
-    ## `geom_smooth()` using formula = 'y ~ x'
 
 ![](README_files/figure-gfm/Effect%20of%20Cloud%20Cover%20on%20Daily%20Energy%20Yield-1.png)<!-- -->
 
@@ -830,8 +801,6 @@ ggplot(df, aes(x = Wind_Speed, y = Daily_energy_yield_kWh)) +
        y = "Daily Energy Yield (kWh)")
 ```
 
-    ## `geom_smooth()` using formula = 'y ~ x'
-
 ![](README_files/figure-gfm/Wind%20Speed%20vs%20Daily%20Energy%20Yield-1.png)<!-- -->
 
 ``` r
@@ -843,8 +812,6 @@ suppressWarnings(suppressMessages(ggplot(df, aes(x = Solar_Radiation, y = Daily_
        x = "Solar Radiation",
        y = "Daily Energy Yield (kWh)")))
 ```
-
-    ## `geom_smooth()` using formula = 'y ~ x'
 
 ![](README_files/figure-gfm/Solar%20Radiation%20vs.%20Daily%20Energy%20Yield-1.png)<!-- -->
 
@@ -858,8 +825,6 @@ ggplot(df, aes(x = Altitude, y = Daily_energy_yield_kWh)) +
        y = "Daily Energy Yield (kWh)")
 ```
 
-    ## `geom_smooth()` using formula = 'y ~ x'
-
 ![](README_files/figure-gfm/Impact%20of%20Altitude%20on%20Daily%20Energy%20Yield-1.png)<!-- -->
 
 ``` r
@@ -871,8 +836,6 @@ ggplot(df, aes(x = UV_Index, y = Daily_energy_yield_kWh)) +
        x = "UV Index",
        y = "Daily Energy Yield (kWh)")
 ```
-
-    ## `geom_smooth()` using formula = 'y ~ x'
 
 ![](README_files/figure-gfm/Relationship%20between%20UV%20Index%20and%20Daily%20Energy%20Yield-1.png)<!-- -->
 
@@ -912,11 +875,6 @@ ggplot(filtered_df, aes(x = Description, y = Daily_energy_yield_kWh, fill = Desc
 
 ``` r
 library(corrplot)
-```
-
-    ## corrplot 0.92 loaded
-
-``` r
 # Calculate the correlation matrix
 cor_matrix <- cor(df[, c("Daily_energy_yield_kWh", "Temperature_C", "Relative_Humidity_Percent", "Solar_Radiation", "UV_Index", "Rain_mm", "Wind_Speed", "Cloud_Cover")])
 
@@ -935,8 +893,6 @@ ggplot(df, aes(x = Daily_energy_yield_kWh, y = Season, fill = Season)) +
   labs(title = "Ridgeline Plot of Energy Yield by Season", x = "Daily Energy Yield (kWh)", y = "Season")
 ```
 
-    ## Picking joint bandwidth of 0.311
-
 ![](README_files/figure-gfm/Ridgeline%20Plot%20of%20Energy%20Yield%20by%20Season-1.png)<!-- -->
 
 ``` r
@@ -947,8 +903,6 @@ ggplot(df, aes(x = Temperature_C, y = Daily_energy_yield_kWh, color = Area)) +
   labs(title = "Energy Yield vs Temperature", x = "Temperature (C)", y = "Daily Energy Yield (kWh)") + 
   facet_wrap(~ Season)
 ```
-
-    ## `geom_smooth()` using formula = 'y ~ x'
 
 ![](README_files/figure-gfm/Energy%20Yield%20vs%20Temperature%20With%20Season-1.png)<!-- -->
 
@@ -1029,16 +983,7 @@ cat("RMSE: ", rmse, "\n")
 ``` r
 # Load necessary libraries
 library(plm)
-```
 
-    ## 
-    ## Attaching package: 'plm'
-
-    ## The following objects are masked from 'package:dplyr':
-    ## 
-    ##     between, lag, lead
-
-``` r
 # Convert the data to a tibble
 df_tibble <- as_tibble(df)
 
@@ -1160,24 +1105,7 @@ Check the proportions for the 2 Linear Regression Models
 ``` r
 # Load necessary libraries
 library(caret) # For RMSE calculation
-```
 
-    ## Warning: package 'caret' was built under R version 4.4.1
-
-    ## Loading required package: lattice
-
-    ## 
-    ## Attaching package: 'caret'
-
-    ## The following objects are masked from 'package:yardstick':
-    ## 
-    ##     precision, recall, sensitivity, specificity
-
-    ## The following object is masked from 'package:purrr':
-    ## 
-    ##     lift
-
-``` r
 # Assuming you have a dataset df with predictors and response variable 'Daily_energy_yield_kWh'
 # Ensure the new data frame new_df is properly structured
 new_df <- df  # Here, replace with your actual new data
