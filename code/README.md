@@ -127,63 +127,63 @@ Location9_Weather2 <- read.csv("../data/Location9 2023-01-01 to 2023-12-31.csv")
 # Select the columns we need from Solar Data
 Location3 <- Location3 %>% 
   select(Timestamp,
-         "Location3 - inverter 2 south -  [] - E_INT_N",
-         "Location3 - inverter 2 south - Current AC [A] - I_AC",
-         "Location3 - inverter 2 south - Direct Current [A] - I_DC",
-         "Location3 - inverter 2 south - AC Voltage [V] - U_AC",
-         "Location3 - inverter 2 south - Voltage DC [V] - U_DC")
+         "Location3 - inverter 1 south -  [] - E_INT_N", 
+         "Location3 - inverter 1 south - Current AC [A] - I_AC", 
+         "Location3 - inverter 1 south - Direct Current [A] - I_DC", 
+         "Location3 - inverter 1 south - AC Voltage [V] - U_AC", 
+         "Location3 - inverter 1 south - Voltage DC [V] - U_DC")
 
 Location1 <- Location1 %>% 
   select(Timestamp,
-         "Location1 - INV 4 2823 - Daily energy yield [kWh] - E_INT_N",
-         "Location1 - INV 4 2823 - Current AC [A] - I_AC",
-         "Location1 - INV 4 2823 - Direct Current [A] - I_DC",
-         "Location1 - INV 4 2823 - AC Voltage [V] - U_AC",
-         "Location1 - INV 4 2823 - Voltage DC [V] - U_DC")
+          "Location1 - INV 1 1234 - Daily energy yield [kWh] - E_INT_N", 
+          "Location1 - INV 1 1234 - Current AC [A] - I_AC", 
+          "Location1 - INV 1 1234 - Direct Current [A] - I_DC", 
+          "Location1 - INV 1 1234 - AC Voltage [V] - U_AC", 
+          "Location1 - INV 1 1234 - Voltage DC [V] - U_DC")
 
 Location2 <- Location2 %>% select(Timestamp,
-                            "Location2 - INV 2 -  [] - E_INT_N",
-                            "Location2 - INV 2 - Current AC [A] - I_AC",
-                            "Location2 - INV 2 - Direct Current [A] - I_DC",
-                            "Location2 - INV 2 - AC Voltage [V] - U_AC",
-                            "Location2 - INV 2 - Voltage DC [V] - U_DC")
+                                  "Location2 - INV 1 -  [] - E_INT_N", 
+                                  "Location2 - INV 1 - Current AC [A] - I_AC", 
+                                  "Location2 - INV 1 - Direct Current [A] - I_DC", 
+                                  "Location2 - INV 1 - AC Voltage [V] - U_AC", 
+                                  "Location2 - INV 1 - Voltage DC [V] - U_DC")
 
 Location4 <- Location4 %>% select(Timestamp,
-                            "Location4 - SMA STP50-41 3020126427 -  [] - E_INT_N",
-                            "Location4 - SMA STP50-41 3020126427 - Current AC [A] - I_AC",
-                            "Location4 - SMA STP50-41 3020126427 - Direct Current [A] - I_DC",
-                            "Location4 - SMA STP50-41 3020126427 - AC Voltage [V] - U_AC",
-                            "Location4 - SMA STP50-41 3020126427 - Voltage DC [V] - U_DC")
+                                 "Location4 - INV 1 2345 -  [] - E_INT_N", 
+                                 "Location4 - INV 1 2345 - Current AC [A] - I_AC", 
+                                 "Location4 - INV 1 2345 - Direct Current [A] - I_DC", 
+                                 "Location4 - INV 1 2345 - AC Voltage [V] - U_AC", 
+                                 "Location4 - INV 1 2345 - Voltage DC [V] - U_DC")
 
 Location5 <- Location5 %>% select(Timestamp,
-                            "Location5 - 1900733075 -  [] - E_INT_N",
-                            "Location5 - 1900733075 - Current AC [A] - I_AC",
-                            "Location5 - 1900733075 - Direct Current [A] - I_DC",
-                            "Location5 - 1900733075 - AC Voltage [V] - U_AC",
-                            "Location5 - 1900733075 - Voltage DC [V] - U_DC")
+                                 "Location5 - INV 1 2345 -  [] - E_INT_N", 
+                                 "Location5 - INV 1 2345 - Current AC [A] - I_AC", 
+                                 "Location5 - INV 1 2345 - Direct Current [A] - I_DC", 
+                                 "Location5 - INV 1 2345 - AC Voltage [V] - U_AC", 
+                                 "Location5 - INV 1 2345 - Voltage DC [V] - U_DC")
 
 Location6 <- Location6 %>% select(Timestamp,
-                            "Location6 -  inv 2 - Daily energy yield [kWh] - E_INT_N",
-                            "Location6 -  inv 2 - Current AC [A] - I_AC",
-                            "Location6 -  inv 2 - Direct Current [A] - I_DC",
-                            "Location6 -  inv 2 - AC Voltage [V] - U_AC",
-                            "Location6 -  inv 2 - Voltage DC [V] - U_DC")
+                                 "Location6 -  INV 1 4567 - Daily energy yield [kWh] - E_INT_N", 
+                                 "Location6 -  INV 1 4567 - Current AC [A] - I_AC", 
+                                 "Location6 -  INV 1 4567 - Direct Current [A] - I_DC", 
+                                 "Location6 -  INV 1 4567 - AC Voltage [V] - U_AC", 
+                                 "Location6 -  INV 1 4567 - Voltage DC [V] - U_DC")
 
 
 Location7 <- Location7 %>% select(Timestamp,
-                            "Location7 - SolarEdge SE50K-IL00IBNQ4 7E04A712 1 -  [] - E_INT_N",
-                            "Location7 - SolarEdge SE50K-IL00IBNQ4 7E04A712 1 - Current AC [A] - I_AC",
-                            "Location7 - SolarEdge SE50K-IL00IBNQ4 7E04A712 1 - Direct Current [A] - I_DC",
-                            "Location7 - SolarEdge SE50K-IL00IBNQ4 7E04A712 1 - AC Voltage [V] - U_AC",
-                            "Location7 - SolarEdge SE50K-IL00IBNQ4 7E04A712 1 - Voltage DC [V] - U_DC")
+                                  "Location7 - INV 1 7896 -  [] - E_INT_N", 
+                                  "Location7 - INV 1 7896 - Current AC [A] - I_AC", 
+                                  "Location7 - INV 1 7896 - Direct Current [A] - I_DC", 
+                                  "Location7 - INV 1 7896 - AC Voltage [V] - U_AC", 
+                                  "Location7 - INV 1 7896 - Voltage DC [V] - U_DC")
 
 
 Location8 <- Location8 %>% select(Timestamp,
-                            "Kfar Ruppin - Floating  - station 1 inverter 14 -  [] - E_INT_N",
-                            "Kfar Ruppin - Floating  - station 1 inverter 14 - Current AC [A] - I_AC",
-                            "Kfar Ruppin - Floating  - station 1 inverter 14 - Direct Current [A] - I_DC",
-                            "Kfar Ruppin - Floating  - station 1 inverter 14 - AC Voltage [V] - U_AC",
-                            "Kfar Ruppin - Floating  - station 1 inverter 14 - Voltage DC [V] - U_DC")
+                                 "Location8  - Station 1 inverter 1 -  [] - E_INT_N", 
+                                 "Location8  - Station 1 inverter 1 - Current AC [A] - I_AC", 
+                                 "Location8  - Station 1 inverter 1 - Direct Current [A] - I_DC", 
+                                 "Location8  - Station 1 inverter 1 - AC Voltage [V] - U_AC", 
+                                 "Location8  - Station 1 inverter 1 - Voltage DC [V] - U_DC")
 
 Location9 <- Location9 %>% select(Timestamp,
                             "Location9 - Inv 1 -  [] - E_INT_N",
@@ -269,11 +269,11 @@ Location7 <- process_df(Location7, "Location7",
                         "Location7 - INV 1 7896 - Voltage DC [V] - U_DC")
 
 Location8 <- process_df(Location8, "Location8", 
-                         "Kfar Ruppin  - Station 1 inverter 1 -  [] - E_INT_N", 
-                         "Kfar Ruppin  - Station 1 inverter 1 - Current AC [A] - I_AC", 
-                         "Kfar Ruppin  - Station 1 inverter 1 - Direct Current [A] - I_DC", 
-                         "Kfar Ruppin  - Station 1 inverter 1 - AC Voltage [V] - U_AC", 
-                         "Kfar Ruppin  - Station 1 inverter 1 - Voltage DC [V] - U_DC")
+                         "Location8  - Station 1 inverter 1 -  [] - E_INT_N", 
+                         "Location8  - Station 1 inverter 1 - Current AC [A] - I_AC", 
+                         "Location8  - Station 1 inverter 1 - Direct Current [A] - I_DC", 
+                         "Location8  - Station 1 inverter 1 - AC Voltage [V] - U_AC", 
+                         "Location8  - Station 1 inverter 1 - Voltage DC [V] - U_DC")
 
 Location9 <- process_df(Location9, "Location9", 
                       "Location9 - Inv 1 -  [] - E_INT_N", 
