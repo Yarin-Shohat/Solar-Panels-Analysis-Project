@@ -47,17 +47,7 @@ To compile and run the project, follow these steps:
 
 ### Data Overview
 
-We have data from 9 different locations:
-
-1. Ashkelon  
-2. Beer Sheva  
-3. Elifaz  
-4. Emek Hefer  
-5. Jerusalem  
-6. Kfar Rupin  
-7. Naharia  
-8. Nir David  
-9. Revivim  
+We have data from 9 different locations in Israel.
 
 The data we collected is from January 1, 2023, until December 31, 2023:
 
