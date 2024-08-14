@@ -77,15 +77,15 @@ Altitudes <- read_excel("../data/Altitudes.xlsx")
 ``` r
 # Read the Data of Solar Panels
 suppressMessages({
-  suppressWarnings({ Revivim <- read_excel("../data/Revivim.xlsx") })
-  suppressWarnings({ Nir_David <- read_excel("../data/Nir David.xlsx") })
-  suppressWarnings({ Ashkelon <- read_excel("../data/Ashkelon.xlsx") })
-  suppressWarnings({ Beer_Sheva <- read_excel("../data/Beer Sheva.xlsx") })
-  suppressWarnings({ Elifaz <- read_excel("../data/Elifaz.xlsx") })
-  suppressWarnings({ Emek_Hefer <- read_excel("../data/Emek Hefer.xlsx") })
-  suppressWarnings({ Jerusalem <- read_excel("../data/Jerusalem.xlsx") })
-  suppressWarnings({ Kfar_Rupin <- read_excel("../data/Kfar Rupin.xlsx") })
-  suppressWarnings({ Naharia <- read_excel("../data/Naharia.xlsx") })
+  suppressWarnings({ Location1 <- read_excel("../data/Location1.xlsx") })
+  suppressWarnings({ Location2 <- read_excel("../data/Location2.xlsx") })
+  suppressWarnings({ Location3 <- read_excel("../data/Location3.xlsx") })
+  suppressWarnings({ Location4 <- read_excel("../data/Location4.xlsx") })
+  suppressWarnings({ Location5 <- read_excel("../data/Location5.xlsx") })
+  suppressWarnings({ Location6 <- read_excel("../data/Location6.xlsx") })
+  suppressWarnings({ Location7 <- read_excel("../data/Location7.xlsx") })
+  suppressWarnings({ Location8 <- read_excel("../data/Location8.xlsx") })
+  suppressWarnings({ Location9 <- read_excel("../data/Location9.xlsx") })
 })
 ```
 
@@ -93,30 +93,30 @@ suppressMessages({
 
 ``` r
 # Read Weather Data from Meteorological Service
-Ashkelon_Weather <- suppressWarnings(read_excel("../data/Ashkelon_Weather.xlsx"))
-Beer_Sheva_Weather <- suppressWarnings(read_excel("../data/Beer_Sheva_Weather.xlsx"))
-Elifaz_Weather <- suppressWarnings(read_excel("../data/Elifaz_Weather.xlsx"))
-Emek_Hefer_Weather <- suppressWarnings(read_excel("../data/Emek_Hefer_Weather.xlsx"))
-Jerusalem_Weather <- suppressWarnings(read_excel("../data/Jerusalem_Weather.xlsx"))
-Kfar_Rupin_Weather <- suppressWarnings(read_excel("../data/Kfar_Rupin_Weather.xlsx"))
-Naharia_Weather <- suppressWarnings(read_excel("../data/Naharia_Weather.xlsx"))
-Nir_David_Weather <- suppressWarnings(read_excel("../data/Nir_David_Weather.xlsx"))
-Revivim_Weather <- suppressWarnings(read_excel("../data/Revivim_Weather.xlsx"))
+Location3_Weather <- suppressWarnings(read_excel("../data/Location3_Weather.xlsx"))
+Location4_Weather <- suppressWarnings(read_excel("../data/Location4_Weather.xlsx"))
+Location5_Weather <- suppressWarnings(read_excel("../data/Location5_Weather.xlsx"))
+Location6_Weather <- suppressWarnings(read_excel("../data/Location6_Weather.xlsx"))
+Location7_Weather <- suppressWarnings(read_excel("../data/Location7_Weather.xlsx"))
+Location8_Weather <- suppressWarnings(read_excel("../data/Location8_Weather.xlsx"))
+Location9_Weather <- suppressWarnings(read_excel("../data/Location9_Weather.xlsx"))
+Location2_Weather <- suppressWarnings(read_excel("../data/Location2_Weather.xlsx"))
+Location1_Weather <- suppressWarnings(read_excel("../data/Location1_Weather.xlsx"))
 ```
 
 ### Read Weather Data from Visual Crossing
 
 ``` r
 # Read Weather Data from Visual Crossing
-Revivim_Weather2 <- read.csv("../data/Revivim 2023-01-01 to 2023-12-31.csv")
-Nir_David_Weather2 <- read.csv("../data/Nir David 2023-01-01 to 2023-12-31.csv")
-Ashkelon_Weather2 <- read.csv("../data/Ashkelon 2023-01-01 to 2023-12-31.csv")
-Beer_Sheva_Weather2 <- read.csv("../data/Beer Sheva 2023-01-01 to 2023-12-31.csv")
-Elifaz_Weather2 <- read.csv("../data/Elifaz 2023-01-01 to 2023-12-31.csv")
-Emek_Hefer_Weather2 <- read.csv("../data/Emek Hefer 2023-01-01 to 2023-12-31.csv")
-Jerusalem_Weather2 <- read.csv("../data/Jerusalem 2023-01-01 to 2023-12-31.csv")
-Kfar_Rupin_Weather2 <- read.csv("../data/Kfar Rupin 2023-01-01 to 2023-12-31.csv")
-Naharia_Weather2 <- read.csv("../data/Naharia 2023-01-01 to 2023-12-31.csv")
+Location1_Weather2 <- read.csv("../data/Location1 2023-01-01 to 2023-12-31.csv")
+Location2_Weather2 <- read.csv("../data/Location2 2023-01-01 to 2023-12-31.csv")
+Location3_Weather2 <- read.csv("../data/Location3 2023-01-01 to 2023-12-31.csv")
+Location4_Weather2 <- read.csv("../data/Location4 2023-01-01 to 2023-12-31.csv")
+Location5_Weather2 <- read.csv("../data/Location5 2023-01-01 to 2023-12-31.csv")
+Location6_Weather2 <- read.csv("../data/Location6 2023-01-01 to 2023-12-31.csv")
+Location7_Weather2 <- read.csv("../data/Location7 2023-01-01 to 2023-12-31.csv")
+Location8_Weather2 <- read.csv("../data/Location8 2023-01-01 to 2023-12-31.csv")
+Location9_Weather2 <- read.csv("../data/Location9 2023-01-01 to 2023-12-31.csv")
 ```
 
 ## Preprocess Electric Data and Merge to one DF
@@ -125,72 +125,72 @@ Naharia_Weather2 <- read.csv("../data/Naharia 2023-01-01 to 2023-12-31.csv")
 
 ``` r
 # Select the columns we need from Solar Data
-Ashkelon <- Ashkelon %>% 
+Location3 <- Location3 %>% 
   select(Timestamp,
-         "Ashkelon - inverter 2 south -  [] - E_INT_N",
-         "Ashkelon - inverter 2 south - Current AC [A] - I_AC",
-         "Ashkelon - inverter 2 south - Direct Current [A] - I_DC",
-         "Ashkelon - inverter 2 south - AC Voltage [V] - U_AC",
-         "Ashkelon - inverter 2 south - Voltage DC [V] - U_DC")
+         "Location3 - inverter 2 south -  [] - E_INT_N",
+         "Location3 - inverter 2 south - Current AC [A] - I_AC",
+         "Location3 - inverter 2 south - Direct Current [A] - I_DC",
+         "Location3 - inverter 2 south - AC Voltage [V] - U_AC",
+         "Location3 - inverter 2 south - Voltage DC [V] - U_DC")
 
-Revivim <- Revivim %>% 
+Location1 <- Location1 %>% 
   select(Timestamp,
-         "Revivim - INV 4 2823 - Daily energy yield [kWh] - E_INT_N",
-         "Revivim - INV 4 2823 - Current AC [A] - I_AC",
-         "Revivim - INV 4 2823 - Direct Current [A] - I_DC",
-         "Revivim - INV 4 2823 - AC Voltage [V] - U_AC",
-         "Revivim - INV 4 2823 - Voltage DC [V] - U_DC")
+         "Location1 - INV 4 2823 - Daily energy yield [kWh] - E_INT_N",
+         "Location1 - INV 4 2823 - Current AC [A] - I_AC",
+         "Location1 - INV 4 2823 - Direct Current [A] - I_DC",
+         "Location1 - INV 4 2823 - AC Voltage [V] - U_AC",
+         "Location1 - INV 4 2823 - Voltage DC [V] - U_DC")
 
-Nir_David <- Nir_David %>% select(Timestamp,
-                            "Nir David - INV 2 -  [] - E_INT_N",
-                            "Nir David - INV 2 - Current AC [A] - I_AC",
-                            "Nir David - INV 2 - Direct Current [A] - I_DC",
-                            "Nir David - INV 2 - AC Voltage [V] - U_AC",
-                            "Nir David - INV 2 - Voltage DC [V] - U_DC")
+Location2 <- Location2 %>% select(Timestamp,
+                            "Location2 - INV 2 -  [] - E_INT_N",
+                            "Location2 - INV 2 - Current AC [A] - I_AC",
+                            "Location2 - INV 2 - Direct Current [A] - I_DC",
+                            "Location2 - INV 2 - AC Voltage [V] - U_AC",
+                            "Location2 - INV 2 - Voltage DC [V] - U_DC")
 
-Beer_Sheva <- Beer_Sheva %>% select(Timestamp,
-                            "Beer Sheva - SMA STP50-41 3020126427 -  [] - E_INT_N",
-                            "Beer Sheva - SMA STP50-41 3020126427 - Current AC [A] - I_AC",
-                            "Beer Sheva - SMA STP50-41 3020126427 - Direct Current [A] - I_DC",
-                            "Beer Sheva - SMA STP50-41 3020126427 - AC Voltage [V] - U_AC",
-                            "Beer Sheva - SMA STP50-41 3020126427 - Voltage DC [V] - U_DC")
+Location4 <- Location4 %>% select(Timestamp,
+                            "Location4 - SMA STP50-41 3020126427 -  [] - E_INT_N",
+                            "Location4 - SMA STP50-41 3020126427 - Current AC [A] - I_AC",
+                            "Location4 - SMA STP50-41 3020126427 - Direct Current [A] - I_DC",
+                            "Location4 - SMA STP50-41 3020126427 - AC Voltage [V] - U_AC",
+                            "Location4 - SMA STP50-41 3020126427 - Voltage DC [V] - U_DC")
 
-Elifaz <- Elifaz %>% select(Timestamp,
-                            "Elifaz - 1900733075 -  [] - E_INT_N",
-                            "Elifaz - 1900733075 - Current AC [A] - I_AC",
-                            "Elifaz - 1900733075 - Direct Current [A] - I_DC",
-                            "Elifaz - 1900733075 - AC Voltage [V] - U_AC",
-                            "Elifaz - 1900733075 - Voltage DC [V] - U_DC")
+Location5 <- Location5 %>% select(Timestamp,
+                            "Location5 - 1900733075 -  [] - E_INT_N",
+                            "Location5 - 1900733075 - Current AC [A] - I_AC",
+                            "Location5 - 1900733075 - Direct Current [A] - I_DC",
+                            "Location5 - 1900733075 - AC Voltage [V] - U_AC",
+                            "Location5 - 1900733075 - Voltage DC [V] - U_DC")
 
-Emek_Hefer <- Emek_Hefer %>% select(Timestamp,
-                            "Emek Hefer -  inv 2 - Daily energy yield [kWh] - E_INT_N",
-                            "Emek Hefer -  inv 2 - Current AC [A] - I_AC",
-                            "Emek Hefer -  inv 2 - Direct Current [A] - I_DC",
-                            "Emek Hefer -  inv 2 - AC Voltage [V] - U_AC",
-                            "Emek Hefer -  inv 2 - Voltage DC [V] - U_DC")
-
-
-Jerusalem <- Jerusalem %>% select(Timestamp,
-                            "Jerusalem - SolarEdge SE50K-IL00IBNQ4 7E04A712 1 -  [] - E_INT_N",
-                            "Jerusalem - SolarEdge SE50K-IL00IBNQ4 7E04A712 1 - Current AC [A] - I_AC",
-                            "Jerusalem - SolarEdge SE50K-IL00IBNQ4 7E04A712 1 - Direct Current [A] - I_DC",
-                            "Jerusalem - SolarEdge SE50K-IL00IBNQ4 7E04A712 1 - AC Voltage [V] - U_AC",
-                            "Jerusalem - SolarEdge SE50K-IL00IBNQ4 7E04A712 1 - Voltage DC [V] - U_DC")
+Location6 <- Location6 %>% select(Timestamp,
+                            "Location6 -  inv 2 - Daily energy yield [kWh] - E_INT_N",
+                            "Location6 -  inv 2 - Current AC [A] - I_AC",
+                            "Location6 -  inv 2 - Direct Current [A] - I_DC",
+                            "Location6 -  inv 2 - AC Voltage [V] - U_AC",
+                            "Location6 -  inv 2 - Voltage DC [V] - U_DC")
 
 
-Kfar_Rupin <- Kfar_Rupin %>% select(Timestamp,
+Location7 <- Location7 %>% select(Timestamp,
+                            "Location7 - SolarEdge SE50K-IL00IBNQ4 7E04A712 1 -  [] - E_INT_N",
+                            "Location7 - SolarEdge SE50K-IL00IBNQ4 7E04A712 1 - Current AC [A] - I_AC",
+                            "Location7 - SolarEdge SE50K-IL00IBNQ4 7E04A712 1 - Direct Current [A] - I_DC",
+                            "Location7 - SolarEdge SE50K-IL00IBNQ4 7E04A712 1 - AC Voltage [V] - U_AC",
+                            "Location7 - SolarEdge SE50K-IL00IBNQ4 7E04A712 1 - Voltage DC [V] - U_DC")
+
+
+Location8 <- Location8 %>% select(Timestamp,
                             "Kfar Ruppin - Floating  - station 1 inverter 14 -  [] - E_INT_N",
                             "Kfar Ruppin - Floating  - station 1 inverter 14 - Current AC [A] - I_AC",
                             "Kfar Ruppin - Floating  - station 1 inverter 14 - Direct Current [A] - I_DC",
                             "Kfar Ruppin - Floating  - station 1 inverter 14 - AC Voltage [V] - U_AC",
                             "Kfar Ruppin - Floating  - station 1 inverter 14 - Voltage DC [V] - U_DC")
 
-Naharia <- Naharia %>% select(Timestamp,
-                            "Naharia - Inv 1 -  [] - E_INT_N",
-                            "Naharia - Inv 1 - Current AC [A] - I_AC",
-                            "Naharia - Inv 1 - Direct Current [A] - I_DC",
-                            "Naharia - Inv 1 - AC Voltage [V] - U_AC",
-                            "Naharia - Inv 1 - Voltage DC [V] - U_DC")
+Location9 <- Location9 %>% select(Timestamp,
+                            "Location9 - Inv 1 -  [] - E_INT_N",
+                            "Location9 - Inv 1 - Current AC [A] - I_AC",
+                            "Location9 - Inv 1 - Direct Current [A] - I_DC",
+                            "Location9 - Inv 1 - AC Voltage [V] - U_AC",
+                            "Location9 - Inv 1 - Voltage DC [V] - U_DC")
 
 # Function to process each data frame
 # The Function is change the columns name to uniform names and change the Types
@@ -219,75 +219,75 @@ process_df <- function(df, location, e_int_n_col, i_ac_col, i_dc_col, u_ac_col, 
 }
 
 # Process each Data Frame
-ashkelon <- process_df(Ashkelon, "Ashkelon", 
-                       "Ashkelon - inverter 2 south -  [] - E_INT_N", 
-                       "Ashkelon - inverter 2 south - Current AC [A] - I_AC", 
-                       "Ashkelon - inverter 2 south - Direct Current [A] - I_DC", 
-                       "Ashkelon - inverter 2 south - AC Voltage [V] - U_AC", 
-                       "Ashkelon - inverter 2 south - Voltage DC [V] - U_DC")
+Location3 <- process_df(Location3, "Location3", 
+                       "Location3 - inverter 1 south -  [] - E_INT_N", 
+                       "Location3 - inverter 1 south - Current AC [A] - I_AC", 
+                       "Location3 - inverter 1 south - Direct Current [A] - I_DC", 
+                       "Location3 - inverter 1 south - AC Voltage [V] - U_AC", 
+                       "Location3 - inverter 1 south - Voltage DC [V] - U_DC")
 
-revivim <- process_df(Revivim, "Revivim", 
-                      "Revivim - INV 4 2823 - Daily energy yield [kWh] - E_INT_N", 
-                      "Revivim - INV 4 2823 - Current AC [A] - I_AC", 
-                      "Revivim - INV 4 2823 - Direct Current [A] - I_DC", 
-                      "Revivim - INV 4 2823 - AC Voltage [V] - U_AC", 
-                      "Revivim - INV 4 2823 - Voltage DC [V] - U_DC")
+Location1 <- process_df(Location1, "Location1", 
+                      "Location1 - INV 1 1234 - Daily energy yield [kWh] - E_INT_N", 
+                      "Location1 - INV 1 1234 - Current AC [A] - I_AC", 
+                      "Location1 - INV 1 1234 - Direct Current [A] - I_DC", 
+                      "Location1 - INV 1 1234 - AC Voltage [V] - U_AC", 
+                      "Location1 - INV 1 1234 - Voltage DC [V] - U_DC")
 
-nir_david <- process_df(Nir_David, "Nir_David", 
-                        "Nir David - INV 2 -  [] - E_INT_N", 
-                        "Nir David - INV 2 - Current AC [A] - I_AC", 
-                        "Nir David - INV 2 - Direct Current [A] - I_DC", 
-                        "Nir David - INV 2 - AC Voltage [V] - U_AC", 
-                        "Nir David - INV 2 - Voltage DC [V] - U_DC")
+Location2 <- process_df(Location2, "Location2", 
+                        "Location2 - INV 1 -  [] - E_INT_N", 
+                        "Location2 - INV 1 - Current AC [A] - I_AC", 
+                        "Location2 - INV 1 - Direct Current [A] - I_DC", 
+                        "Location2 - INV 1 - AC Voltage [V] - U_AC", 
+                        "Location2 - INV 1 - Voltage DC [V] - U_DC")
 
-beer_sheva <- process_df(Beer_Sheva, "Beer_Sheva", 
-                         "Beer Sheva - SMA STP50-41 3020126427 -  [] - E_INT_N", 
-                         "Beer Sheva - SMA STP50-41 3020126427 - Current AC [A] - I_AC", 
-                         "Beer Sheva - SMA STP50-41 3020126427 - Direct Current [A] - I_DC", 
-                         "Beer Sheva - SMA STP50-41 3020126427 - AC Voltage [V] - U_AC", 
-                         "Beer Sheva - SMA STP50-41 3020126427 - Voltage DC [V] - U_DC")
+Location4 <- process_df(Location4, "Location4", 
+                         "Location4 - INV 1 2345 -  [] - E_INT_N", 
+                         "Location4 - INV 1 2345 - Current AC [A] - I_AC", 
+                         "Location4 - INV 1 2345 - Direct Current [A] - I_DC", 
+                         "Location4 - INV 1 2345 - AC Voltage [V] - U_AC", 
+                         "Location4 - INV 1 2345 - Voltage DC [V] - U_DC")
 
-elifaz <- process_df(Elifaz, "Elifaz", 
-                     "Elifaz - 1900733075 -  [] - E_INT_N", 
-                     "Elifaz - 1900733075 - Current AC [A] - I_AC", 
-                     "Elifaz - 1900733075 - Direct Current [A] - I_DC", 
-                     "Elifaz - 1900733075 - AC Voltage [V] - U_AC", 
-                     "Elifaz - 1900733075 - Voltage DC [V] - U_DC")
+Location5 <- process_df(Location5, "Location5", 
+                     "Location5 - INV 1 2345 -  [] - E_INT_N", 
+                     "Location5 - INV 1 2345 - Current AC [A] - I_AC", 
+                     "Location5 - INV 1 2345 - Direct Current [A] - I_DC", 
+                     "Location5 - INV 1 2345 - AC Voltage [V] - U_AC", 
+                     "Location5 - INV 1 2345 - Voltage DC [V] - U_DC")
 
-emek_hefer <- process_df(Emek_Hefer, "Emek_Hefer", 
-                         "Emek Hefer -  inv 2 - Daily energy yield [kWh] - E_INT_N", 
-                         "Emek Hefer -  inv 2 - Current AC [A] - I_AC", 
-                         "Emek Hefer -  inv 2 - Direct Current [A] - I_DC", 
-                         "Emek Hefer -  inv 2 - AC Voltage [V] - U_AC", 
-                         "Emek Hefer -  inv 2 - Voltage DC [V] - U_DC")
+Location6 <- process_df(Location6, "Location6", 
+                         "Location6 -  INV 1 4567 - Daily energy yield [kWh] - E_INT_N", 
+                         "Location6 -  INV 1 4567 - Current AC [A] - I_AC", 
+                         "Location6 -  INV 1 4567 - Direct Current [A] - I_DC", 
+                         "Location6 -  INV 1 4567 - AC Voltage [V] - U_AC", 
+                         "Location6 -  INV 1 4567 - Voltage DC [V] - U_DC")
 
-jerusalem <- process_df(Jerusalem, "Jerusalem", 
-                        "Jerusalem - SolarEdge SE50K-IL00IBNQ4 7E04A712 1 -  [] - E_INT_N", 
-                        "Jerusalem - SolarEdge SE50K-IL00IBNQ4 7E04A712 1 - Current AC [A] - I_AC", 
-                        "Jerusalem - SolarEdge SE50K-IL00IBNQ4 7E04A712 1 - Direct Current [A] - I_DC", 
-                        "Jerusalem - SolarEdge SE50K-IL00IBNQ4 7E04A712 1 - AC Voltage [V] - U_AC", 
-                        "Jerusalem - SolarEdge SE50K-IL00IBNQ4 7E04A712 1 - Voltage DC [V] - U_DC")
+Location7 <- process_df(Location7, "Location7", 
+                        "Location7 - INV 1 7896 -  [] - E_INT_N", 
+                        "Location7 - INV 1 7896 - Current AC [A] - I_AC", 
+                        "Location7 - INV 1 7896 - Direct Current [A] - I_DC", 
+                        "Location7 - INV 1 7896 - AC Voltage [V] - U_AC", 
+                        "Location7 - INV 1 7896 - Voltage DC [V] - U_DC")
 
-kfar_rupin <- process_df(Kfar_Rupin, "Kfar_Rupin", 
-                         "Kfar Ruppin - Floating  - station 1 inverter 14 -  [] - E_INT_N", 
-                         "Kfar Ruppin - Floating  - station 1 inverter 14 - Current AC [A] - I_AC", 
-                         "Kfar Ruppin - Floating  - station 1 inverter 14 - Direct Current [A] - I_DC", 
-                         "Kfar Ruppin - Floating  - station 1 inverter 14 - AC Voltage [V] - U_AC", 
-                         "Kfar Ruppin - Floating  - station 1 inverter 14 - Voltage DC [V] - U_DC")
+Location8 <- process_df(Location8, "Location8", 
+                         "Kfar Ruppin  - Station 1 inverter 1 -  [] - E_INT_N", 
+                         "Kfar Ruppin  - Station 1 inverter 1 - Current AC [A] - I_AC", 
+                         "Kfar Ruppin  - Station 1 inverter 1 - Direct Current [A] - I_DC", 
+                         "Kfar Ruppin  - Station 1 inverter 1 - AC Voltage [V] - U_AC", 
+                         "Kfar Ruppin  - Station 1 inverter 1 - Voltage DC [V] - U_DC")
 
-naharia <- process_df(Naharia, "Naharia", 
-                      "Naharia - Inv 1 -  [] - E_INT_N", 
-                      "Naharia - Inv 1 - Current AC [A] - I_AC", 
-                      "Naharia - Inv 1 - Direct Current [A] - I_DC", 
-                      "Naharia - Inv 1 - AC Voltage [V] - U_AC", 
-                      "Naharia - Inv 1 - Voltage DC [V] - U_DC")
+Location9 <- process_df(Location9, "Location9", 
+                      "Location9 - Inv 1 -  [] - E_INT_N", 
+                      "Location9 - Inv 1 - Current AC [A] - I_AC", 
+                      "Location9 - Inv 1 - Direct Current [A] - I_DC", 
+                      "Location9 - Inv 1 - AC Voltage [V] - U_AC", 
+                      "Location9 - Inv 1 - Voltage DC [V] - U_DC")
 ```
 
 ### Merge Electric Data to one DF
 
 ``` r
 # Merge all data frames
-Solar_df <- bind_rows(ashkelon, revivim, nir_david, beer_sheva, elifaz, emek_hefer, jerusalem, kfar_rupin, naharia)
+Solar_df <- bind_rows(Location3, Location1, Location2, Location4, Location5, Location6, Location7, Location8, Location9)
 ```
 
 ## Preprocess Weather Data from Meteorological Service and Merge to one DF
@@ -314,27 +314,27 @@ rename_columns <- function(df, location) {
 }
 
 # Process each Data Frame
-Ashkelon_Weather <- rename_columns(Ashkelon_Weather, "Ashkelon")
-Revivim_Weather <- rename_columns(Revivim_Weather, "Revivim")
-Nir_David_Weather <- rename_columns(Nir_David_Weather, "Nir_David")
-Beer_Sheva_Weather <- rename_columns(Beer_Sheva_Weather, "Beer_Sheva")
-Elifaz_Weather <- rename_columns(Elifaz_Weather, "Elifaz")
-Emek_Hefer_Weather <- rename_columns(Emek_Hefer_Weather, "Emek_Hefer")
-Jerusalem_Weather <- rename_columns(Jerusalem_Weather, "Jerusalem")
-Kfar_Rupin_Weather <- rename_columns(Kfar_Rupin_Weather, "Kfar_Rupin")
-Naharia_Weather <- rename_columns(Naharia_Weather, "Naharia")
+Location3_Weather <- rename_columns(Location3_Weather, "Location3")
+Location1_Weather <- rename_columns(Location1_Weather, "Location1")
+Location2_Weather <- rename_columns(Location2_Weather, "Location2")
+Location4_Weather <- rename_columns(Location4_Weather, "Location4")
+Location5_Weather <- rename_columns(Location5_Weather, "Location5")
+Location6_Weather <- rename_columns(Location6_Weather, "Location6")
+Location7_Weather <- rename_columns(Location7_Weather, "Location7")
+Location8_Weather <- rename_columns(Location8_Weather, "Location8")
+Location9_Weather <- rename_columns(Location9_Weather, "Location9")
 
 # Merge all Weather Data frames
 Weather_df <- bind_rows(
-  Ashkelon_Weather, 
-  Revivim_Weather, 
-  Nir_David_Weather, 
-  Beer_Sheva_Weather, 
-  Elifaz_Weather, 
-  Emek_Hefer_Weather, 
-  Jerusalem_Weather, 
-  Kfar_Rupin_Weather, 
-  Naharia_Weather
+  Location3_Weather, 
+  Location1_Weather, 
+  Location2_Weather, 
+  Location4_Weather, 
+  Location5_Weather, 
+  Location6_Weather, 
+  Location7_Weather, 
+  Location8_Weather, 
+  Location9_Weather
 )
 ```
 
@@ -391,25 +391,25 @@ convert_date_format <- function(df, date_col) {
 }
 
 # Assign the modified data frames back to their original names
-Nir_David_Weather2 <- convert_date_format(Nir_David_Weather2, datetime)
-Beer_Sheva_Weather2 <- convert_date_format(Beer_Sheva_Weather2, datetime)
-Elifaz_Weather2 <- convert_date_format(Elifaz_Weather2, datetime)
-Emek_Hefer_Weather2 <- convert_date_format(Emek_Hefer_Weather2, datetime)
-Kfar_Rupin_Weather2 <- convert_date_format(Kfar_Rupin_Weather2, datetime)
-Jerusalem_Weather2 <- convert_date_format(Jerusalem_Weather2, datetime)
-Naharia_Weather2 <- convert_date_format(Naharia_Weather2, datetime)
+Location2_Weather2 <- convert_date_format(Location2_Weather2, datetime)
+Location4_Weather2 <- convert_date_format(Location4_Weather2, datetime)
+Location5_Weather2 <- convert_date_format(Location5_Weather2, datetime)
+Location6_Weather2 <- convert_date_format(Location6_Weather2, datetime)
+Location8_Weather2 <- convert_date_format(Location8_Weather2, datetime)
+Location7_Weather2 <- convert_date_format(Location7_Weather2, datetime)
+Location9_Weather2 <- convert_date_format(Location9_Weather2, datetime)
 
 # Merge all Weather Data frames
 Weather_df2 <- bind_rows(
-  Ashkelon_Weather2, 
-  Revivim_Weather2, 
-  Nir_David_Weather2, 
-  Beer_Sheva_Weather2, 
-  Elifaz_Weather2, 
-  Emek_Hefer_Weather2, 
-  Jerusalem_Weather2, 
-  Kfar_Rupin_Weather2, 
-  Naharia_Weather2
+  Location3_Weather2, 
+  Location1_Weather2, 
+  Location2_Weather2, 
+  Location4_Weather2, 
+  Location5_Weather2, 
+  Location6_Weather2, 
+  Location7_Weather2, 
+  Location8_Weather2, 
+  Location9_Weather2
 )
 
 # Covert the Date to Date Type
@@ -727,9 +727,9 @@ Create Area Column and add Dummy variables
 
 ``` r
 # Create Area column based on Location - From Google Maps
-df$Area <- ifelse(df$Location %in% c("Naharia", "Kfar_Rupin", "Nir_David"), "North",
-                         ifelse(df$Location %in% c("Emek_Hefer", "Jerusalem"), "Center",
-                                ifelse(df$Location %in% c("Ashkelon", "Beer_Sheva", "Elifaz", "Revivim"), "South", NA)))
+df$Area <- ifelse(df$Location %in% c("Location9", "Location8", "Location2"), "North",
+                         ifelse(df$Location %in% c("Location6", "Location7"), "Center",
+                                ifelse(df$Location %in% c("Location3", "Location4", "Location5", "Location1"), "South", NA)))
 
 # Create a function to Make dummy variables
 
